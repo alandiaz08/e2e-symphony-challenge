@@ -174,4 +174,20 @@ export class LoginPage extends basePage {
     return await this.passwordRequiredMessage.textContent();
   }
 
+  /**
+   * Checks if the "Keep Me Signed In" checkbox is visible.
+   * @return {Promise<boolean>} True if the checkbox is visible, false otherwise.
+   */
+  async isKeepMeSignedCheckboxVisible(): Promise<boolean> {
+    try {
+      await this.keepMeSignedCheckbox.waitFor({ state: 'attached' });
+      const isVisible = await this.keepMeSignedCheckbox.isVisible();
+      console.log('Checking if the "Keep Me Signed In" checkbox is visible:', isVisible); // Consider replacing with your logger if available
+      return isVisible;
+    } catch (error) {
+      console.error('Error when checking for "Keep Me Signed In" checkbox visibility:', error); // Consider replacing with your logger if available
+      return false;
+    }
+  }
+
 }
