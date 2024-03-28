@@ -1,0 +1,15 @@
+node_modules/
+/test-results/
+/playwright-report/
+/playwright/.cache/
+/test-results/
+/playwright-report/
+/playwright/.cache/
+/.vscode/
+/screenshots/
+logs/
+/error.logs
+/allure-results/
+/allure-report/
+/test-result.json
+.env
