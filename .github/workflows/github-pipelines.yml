@@ -51,9 +51,6 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps      
 
-    - name: Run Playwright tests
-      run: npx playwright test
-    
     - name: Run Playwright Tests
       run: npm run test:genai-all -- --grep=${{ github.event.inputs.testGroup }} --shard=${{ matrix.shard }}/${{ github.event.inputs.shardCount }}
       env:
