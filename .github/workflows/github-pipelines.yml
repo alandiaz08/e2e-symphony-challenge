@@ -16,6 +16,14 @@ on:
           - 'qa'
           - 'dev'
           - 'prod'
+      testGroup:
+        description: 'Test group to execute'
+        required: true
+        default: '@full-regression'
+        type: choice
+        options:
+          - '@full-regression'
+          - '@login'
       shardCount:
         description: 'Number of shards/workers'
         required: true
@@ -28,37 +36,47 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x]
-        include:
-          - env: ${{ github.event.inputs.environment }}
-            shard: 1
-            totalShards: ${{ github.event.inputs.shardCount }}
-          - env: ${{ github.event.inputs.environment }}
-            shard: 2
-            totalShards: ${{ github.event.inputs.shardCount }}
-            
+        shard: [1, 2] # Esto crea dos jobs paralelos.
     steps:
     - uses: actions/checkout@v2
-
+    
     - name: Set up Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-
+    
     - name: Install dependencies
       run: npm install
-
+    
     - name: Run Playwright Tests
-      run: npm run test:genai-all -- --shard=${{ matrix.env }} --shard=${{ matrix.shard }}/${{ matrix.totalShards }}
+      run: npm run test:genai-all -- --grep="${{ github.event.inputs.testGroup }}" --shard=${{ matrix.shard }}/${{ github.event.inputs.shardCount }}
       env:
-        APP_ENV: ${{ matrix.env }}
+        APP_ENV: ${{ github.event.inputs.environment }}
+    
+    - name: Upload Allure results as an artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: allure-results-${{ matrix.shard }}
+        path: allure-results/
+
+  consolidate-reports:
+    runs-on: ubuntu-latest
+    needs: [test]
+    steps:
+    - name: Download Allure results artifacts
+      uses: actions/download-artifact@v2
+      with:
+        path: consolidated-results
+
+    - name: Install Allure Commandline
+      run: npm install -g allure-commandline
 
     - name: Generate Allure report
-      if: always()
-      run: npm run allure:html-report
+      run: allure generate consolidated-results/ -o allure-report/
 
     - name: Upload Allure report
       uses: actions/upload-artifact@v2
-      if: always()
       with:
-        name: Allure Report ${{ matrix.env }}
-        path: public/
+        name: Allure Report
+        path: allure-report/
+
