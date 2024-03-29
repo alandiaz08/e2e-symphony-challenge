@@ -85,3 +85,9 @@ jobs:
       with:
         name: Allure Report
         path: allure-report/
+   
+    - name: Print Allure Report URL
+      run: |
+        echo "The Allure Report will be available at:"
+        echo "https://toledotorrespatricio.github.io/e2e-genai-tests/allure-report/index.html"
+        
