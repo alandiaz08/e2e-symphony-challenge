@@ -7,7 +7,7 @@
     "playwright": "npx playwright",
     "test": "playwright test",
     "===== GenAi =====": "",
-    "test:genai-all": "playwright test --config=playwright.config.ts src/tests/**/*.spec.ts --grep ",
+    "test:genai-all": "playwright test --config=playwright.config.ts src/tests/**/*.spec.ts ",
     "===== Clean =====": "",
     "clean-results": "del /s /q allure-results\\*",
     "===== Allure =====": "",
