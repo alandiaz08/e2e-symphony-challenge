@@ -49,7 +49,7 @@ jobs:
       run: npm install
     
     - name: Run Playwright Tests
-      run: npm run test:genai-all -- --grep="${{ github.event.inputs.testGroup }}" --shard=${{ matrix.shard }}/${{ github.event.inputs.shardCount }}
+      run: npm run test:genai-all --grep=${{ github.event.inputs.testGroup }} --shard=${{ matrix.shard }}/${{ github.event.inputs.shardCount }}
       env:
         APP_ENV: ${{ github.event.inputs.environment }}
     
