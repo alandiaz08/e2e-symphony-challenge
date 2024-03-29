@@ -85,14 +85,3 @@ jobs:
       with:
         name: Allure Report
         path: allure-report/
-   
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./public
-
-    - name: Print Report URL
-      run: |
-        echo "Report URL: https://${{ github.repository_owner }}.github.io/${{ github.repository }}/public/index.html"
-
