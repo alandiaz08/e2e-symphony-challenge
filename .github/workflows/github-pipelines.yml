@@ -1,0 +1,42 @@
+name: Playwright Tests
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+        shard: [1, 2] # Ajusta el número de shards según necesites
+        env: [qa, dev, prod] # Define los ambientes en los que quieres correr las pruebas
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run Playwright Tests
+      run: npm run test -- --project=${{ matrix.env }} --shard=${{ matrix.shard }}/2
+      env:
+        APP_ENV: ${{ matrix.env }}
+
+    - name: Generate Allure report
+      if: always()
+      run: npm run allure:html-report
+
+    - name: Upload Allure report
+      uses: actions/upload-artifact@v2
+      if: always()
+      with:
+        name: Allure Report ${{ matrix.env }}
+        path: public/

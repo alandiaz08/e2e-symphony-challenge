@@ -3,16 +3,25 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "playwright": "npx playwright",
+    "test": "playwright test",
+    "===== GenAi =====": "",
+    "test:genai-all": "playwright test --config=playwright.config.ts src/tests/**/*.spec.ts --grep ",
+    "===== Clean =====": "",
+    "clean-results": "del /s /q allure-results\\*",
+    "===== Allure =====": "",
+    "allure:test": "yarn playwright test --config=playwright.config.ts --reporter=allure-playwright",
+    "allure:html-report": "allure generate --clean -o public allure-results"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.42.1",
-    "@types/node": "^20.11.30"
-  },
-  "dependencies": {
-    "dotenv": "^16.4.5",
-    "winston": "^3.13.0"
+    "@types/jest": "^29.4.0",
+    "allure-playwright": "^2.15.0",
+    "dotenv": "^16.0.3",
+    "winston": "^3.9.0"
   }
 }
