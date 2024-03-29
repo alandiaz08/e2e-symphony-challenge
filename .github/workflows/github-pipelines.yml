@@ -46,9 +46,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     
-    - name: Install dependencies
-      run: npm ci # 'npm ci' es más rápido y se usa para integración continua
-    
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps # Asegúrate de instalar las dependencias necesarias para Playwright
     
