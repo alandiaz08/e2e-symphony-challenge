@@ -48,7 +48,7 @@ jobs:
       run: npm install
 
     - name: Run Playwright Tests
-      run: npm run test -- --project=${{ matrix.env }} --shard=${{ matrix.shard }}/${{ matrix.totalShards }}
+      run: npm run test:genai-all -- --shard=${{ matrix.env }} --shard=${{ matrix.shard }}/${{ matrix.totalShards }}
       env:
         APP_ENV: ${{ matrix.env }}
 
