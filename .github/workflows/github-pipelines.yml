@@ -1,9 +1,26 @@
-name: Playwright Tests
+name: GenAi Tests
+
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to run tests against'
+        required: true
+        default: 'qa'
+        type: choice
+        options:
+          - 'qa'
+          - 'dev'
+          - 'prod'
+      shardCount:
+        description: 'Number of shards/workers'
+        required: true
+        default: '2'
+        type: string
 
 jobs:
   test:
@@ -11,9 +28,14 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x]
-        shard: [1, 2] # Ajusta el número de shards según necesites
-        env: [qa, dev, prod] # Define los ambientes en los que quieres correr las pruebas
-
+        include:
+          - env: ${{ github.event.inputs.environment }}
+            shard: 1
+            totalShards: ${{ github.event.inputs.shardCount }}
+          - env: ${{ github.event.inputs.environment }}
+            shard: 2
+            totalShards: ${{ github.event.inputs.shardCount }}
+            
     steps:
     - uses: actions/checkout@v2
 
@@ -26,7 +48,7 @@ jobs:
       run: npm install
 
     - name: Run Playwright Tests
-      run: npm run test -- --project=${{ matrix.env }} --shard=${{ matrix.shard }}/2
+      run: npm run test -- --project=${{ matrix.env }} --shard=${{ matrix.shard }}/${{ matrix.totalShards }}
       env:
         APP_ENV: ${{ matrix.env }}
 
