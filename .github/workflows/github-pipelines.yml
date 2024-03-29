@@ -2,9 +2,9 @@ name: GenAi Tests
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, master ] # Añadido 'master' por si lo utilizas como branch principal además de 'main'
   pull_request:
-    branches: [ main ]
+    branches: [ main, master ] # Añadido 'master' por si lo utilizas como branch principal además de 'main'
   workflow_dispatch:
     inputs:
       environment:
@@ -33,43 +33,36 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 60 # Establecer un límite de tiempo para el job
     strategy:
       matrix:
-        node-version: [14.x]
-        shard: [1, 2] # Esto crea dos jobs paralelos.
+        node-version: [14.x] # Cambiar a 16 según la imagen si necesitas esa versión de Node.js
+        shard: [1, 2] # Esto crea dos jobs paralelos
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3 # Asegúrate de utilizar la versión más reciente de las acciones
     
     - name: Set up Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        java-version: '8'
-        distribution: 'adopt'
     
     - name: Install dependencies
-      run: npm install
-      
-    - name: Install Playwright browsers
-      run: npx playwright install
-      
+      run: npm ci # 'npm ci' es más rápido y se usa para integración continua
+    
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps # Asegúrate de instalar las dependencias necesarias para Playwright
+    
     - name: Run Playwright Tests
-      run: npm run test:genai-all -- --grep=${{ github.event.inputs.testGroup }} --shard=${{ matrix.shard }}/${{ github.event.inputs.shardCount }}
+      run: npm run test:genai-all -- --grep=${{ github.event.inputs.testGroup }}
       env:
         APP_ENV: ${{ github.event.inputs.environment }}
-    
-    - name: Upload Allure results as an artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: allure-results-${{ matrix.shard }}
-        path: allure-results/
 
   consolidate-reports:
     runs-on: ubuntu-latest
     needs: [test]
     steps:
     - name: Download Allure results artifacts
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         path: consolidated-results
 
@@ -80,8 +73,8 @@ jobs:
       run: allure generate consolidated-results/ -o allure-report/
 
     - name: Upload Allure report
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: Allure Report
         path: allure-report/
-
+        retention-days: 30
