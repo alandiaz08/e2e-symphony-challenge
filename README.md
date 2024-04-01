@@ -4,7 +4,7 @@
   <img src="images/genai.png" width="800" height="250"/>
 </p>
 
-e2e-genai-tests is a TypeScript-based Playwright project that uses the Page Object Model to test Orchestra page. This project currently serves as a proof of concept for automated testing using Playwright.
+e2e-genai-tests is a TypeScript-based Playwright project that uses the Page Object Model to test GenAi page. This project currently serves as a proof of concept for automated testing using Playwright.
 
 ## 🛠️ Prerequisites
 
