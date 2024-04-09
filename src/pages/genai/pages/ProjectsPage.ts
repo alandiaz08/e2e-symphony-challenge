@@ -11,6 +11,7 @@ export class ProjectPage extends basePage {
   private readonly yourProjectButton: Locator;
   private readonly allProjectButton: Locator;
   private readonly newProjectModalContainer: Locator;
+  private readonly projectsListContainer: Locator;
 
 
   /**
@@ -19,6 +20,12 @@ export class ProjectPage extends basePage {
   constructor(page: Page) {
     super(page);
     this.projectTitle = page.locator('div > h1');
+    this.newProjectButton = this.page.locator('[class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  css-vck9j4"]');
+    this.yourProjectButton = this.page.locator('[id="simple-tab-0"]');
+    this.allProjectButton = this.page.locator('[id="simple-tab-1"]');
+    this.newProjectModalContainer = this.page.locator('[aria-labelledby="form-dialog-title"]');
+    this.projectsListContainer = this.page.locator('[class="MuiAccordionDetails-root css-1fz9gj5"]');
+
   }
 
   /**
