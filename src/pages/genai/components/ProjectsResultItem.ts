@@ -2,9 +2,9 @@ import { BaseComponent } from "../../base/baseComponent";
 import { Locator, Page } from "@playwright/test";
 
 /**
- * Class for customerResultItem
+ * Class for ProjectsResultItem
  */
-export class contactsResultItem extends BaseComponent {
+export class ProjectsResultItem extends BaseComponent {
   private container;
   private readonly projectName: Locator;
   private readonly projectDescription: Locator;
