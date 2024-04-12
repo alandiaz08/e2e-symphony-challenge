@@ -12,7 +12,7 @@ export class PersonalitySettingsIaContainerResultItem extends BaseComponent {
   constructor(page: Page, container: Locator) {
     super(page);
     this.container = container;
-    this.settingsTitle = this.container.locator('');
+    this.settingsTitle = this.container.locator('[data-testid="config-element-pending"]');
   }
 
   /**

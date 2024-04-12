@@ -16,7 +16,7 @@ export class ProjectsResultList extends BaseComponent {
   constructor(page: Page, container: Locator) {
     super(page);
     this.container = container;
-    this.projectsListItems = this.container.locator('div');
+    this.projectsListItems = this.container.locator('button');
   }
 
   async getProjectsItems(): Promise<Locator[]> {

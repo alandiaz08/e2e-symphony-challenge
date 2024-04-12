@@ -9,7 +9,7 @@ export class ProjectBuilderPage extends basePage {
   private readonly projectTitleField: Locator;
   private readonly projectDescriptionField: Locator;
   private readonly addPhoto: Locator;
-  private readonly publishButton: Locator;
+  //private readonly publishButton: Locator;
   private readonly previewButton: Locator;
   private readonly shareButton: Locator;
   private readonly favoriteButton: Locator;
@@ -28,22 +28,22 @@ export class ProjectBuilderPage extends basePage {
    */
   constructor(page: Page) {
     super(page);
-    this.projectTitleField = this.page.locator('[id="mui-18"]');
-    this.projectDescriptionField = this.page.locator('[id="standard-basicx"]');
-    this.addPhoto = this.page.locator('[class="jss7"]');
-    this.publishButton = this.page.locator('[class="css-1axyrzt"] > button:nth-child(1)');
-    this.previewButton = this.page.locator('button +a');
-    this.shareButton = this.page.locator('[class="css-1axyrzt"] > button:nth-child(3)');
-    this.favoriteButton = this.page.locator('[class="css-1axyrzt"] > button:nth-child(4)');
-    this.actionButton = this.page.locator('[class="css-1axyrzt"] > button:nth-child(5)');
-    this.deleteButton = this.page.locator('li > span');
-    this.backButton = this.page.locator('[class="MuiChip-label"]');
+    this.projectTitleField = this.page.locator('[data-testid="edit-title-input"]');
+    this.projectDescriptionField = this.page.locator('[data-testid="edit-description-input"]');
+    this.addPhoto = this.page.locator('[data-testid="upload-file-label"]');
+    //this.publishButton = this.page.locator('[class="css-1axyrzt"] > button:nth-child(1)');
+    this.previewButton = this.page.locator('[data-testid="preview-btn"]');
+    this.shareButton = this.page.locator('[data-testid="share-dialog-button"]');
+    this.favoriteButton = this.page.locator('[data-testid="favorite-button"]');
+    this.actionButton = this.page.locator('[data-testid="dropdown-button"]');
+    this.deleteButton = this.page.locator('ul > li');
+    this.backButton = this.page.locator('[data-testid="page-header"] > div:nth-child(1)');
     this.overviewButton = this.page.locator('[id="simple-tab-1"]');
     this.dataSourceButton = this.page.locator('[id="simple-tab-2"]');
     this.integrationsButton = this.page.locator('[id="simple-tab-3"]');
     this.performanceButton = this.page.locator('[id="simple-tab-4"]');
-    this.personalitySettingsIaListContainer = this.page.locator('[class="MuiBox-root css-1yuhvjn"]>p>div>div>div>div:nth-child(1)');
-    this.chatContainer = this.page.locator('[class="MuiBox-root css-1yuhvjn"]>p>div>div>div>div:nth-child(2)');
+    this.personalitySettingsIaListContainer = this.page.locator('[data-testid="config-element-list"]');
+    this.chatContainer = this.page.locator('[data-testid="chat-builder"]');
   }
 
   /**

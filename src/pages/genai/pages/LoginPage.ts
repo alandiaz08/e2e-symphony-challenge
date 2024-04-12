@@ -22,15 +22,15 @@ export class LoginPage extends basePage {
    */
   constructor(page: Page) {
     super(page);
-    this.emailInput = page.locator('[name="email"]');
-    this.passwordInput = page.locator('[name="password"]');
-    this.loginButton = page.locator('[type="submit"]');
-    this.registerButton = page.locator('p > a');
+    this.emailInput = page.locator('[id="email"]');
+    this.passwordInput = page.locator('[id="password"]');
+    this.loginButton = page.locator('[data-testid="login-button"] ');
+    this.registerButton = page.locator('h4 > a');
     this.forgotPasswordButton = page.locator('div > a');
     this.keepMeSignedCheckbox = page.locator('[name="remember"]');
-    this.welcomeMessage = page.locator('form > h1');
-    this.emailRequiredMessage = page.getByText('Email is required!');
-    this.passwordRequiredMessage = page.getByText('Password is required!');
+    this.welcomeMessage = page.locator('div > h1');
+    this.emailRequiredMessage = page.locator('[id="email-helper-text"]');
+    this.passwordRequiredMessage = page.locator('[id="password-helper-text"]');
   }
 
   /**

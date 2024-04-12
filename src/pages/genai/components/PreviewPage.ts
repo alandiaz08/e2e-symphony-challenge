@@ -2,9 +2,9 @@ import { BaseComponent } from "../../base/baseComponent";
 import { Locator, Page } from "@playwright/test";
 
 /**
- * Class for ProjectsAiChat
+ * Class for PreviewPage
  */
-export class ProjectsAiChat extends BaseComponent {
+export class PreviewPage extends BaseComponent {
   private container;
   private readonly iaMessage: Locator;
   private readonly myMessage: Locator;
@@ -15,10 +15,10 @@ export class ProjectsAiChat extends BaseComponent {
   constructor(page: Page, container: Locator) {
     super(page);
     this.container = container;
-    this.iaMessage = this.container.locator('[class="sc-cxxOSt rbELc"]:nth-child(1)');
-    this.myMessage = this.container.locator('[data-testid="chat-messages"]');
-    this.messageField = this.container.locator('[data-testid="chat-builder-input"]');
-    this.sendButton = this.container.locator('[data-testid="chat-builder-submit"]');
+    this.iaMessage = this.container.locator('[data-testid="chat-message-received"]');
+    this.myMessage = this.container.locator('[data-testid="chat-message-sent"]');
+    this.messageField = this.container.locator('[data-testid="chat-input"]');
+    this.sendButton = this.container.locator('[data-testid="chat-button"]');
   }
 
   /**
@@ -69,5 +69,5 @@ export class ProjectsAiChat extends BaseComponent {
     await this.sendButton.waitFor({ state: 'attached' });
     await this.sendButton.click();
   }
-
+    
 }
