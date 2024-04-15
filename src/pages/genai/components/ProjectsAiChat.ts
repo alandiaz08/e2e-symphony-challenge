@@ -15,7 +15,7 @@ export class ProjectsAiChat extends BaseComponent {
   constructor(page: Page, container: Locator) {
     super(page);
     this.container = container;
-    this.iaMessage = this.container.locator('[class="sc-cxxOSt rbELc"]:nth-child(1)');
+    this.iaMessage = this.container.locator('[data-testid="chat-messages"] > div:nth-child(2) > div:nth-child(2)');
     this.myMessage = this.container.locator('[data-testid="chat-messages"]');
     this.messageField = this.container.locator('[data-testid="chat-builder-input"]');
     this.sendButton = this.container.locator('[data-testid="chat-builder-submit"]');
@@ -56,7 +56,7 @@ export class ProjectsAiChat extends BaseComponent {
    * @param {string} message The message to be entered into the field.
    */
   async enterMessage(message: string): Promise<void> {
-    this.logger.info('Entering message into the message field');
+    this.logger.info('Entering message into the message field: ' + message);
     await this.messageField.waitFor({ state: 'attached' });
     await this.messageField.fill(message);
   }

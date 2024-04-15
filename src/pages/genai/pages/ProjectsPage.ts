@@ -24,8 +24,19 @@ export class ProjectPage extends basePage {
     this.yourProjectButton = this.page.locator('[id="simple-tab-0"]');
     this.allProjectButton = this.page.locator('[id="simple-tab-1"]');
     this.newProjectModalContainer = this.page.locator('[aria-labelledby="form-dialog-title"]');
-    this.projectsListContainer = this.page.locator('[id="simple-tabpanel-0"] > div > div');
+    this.projectsListContainer = this.page.locator('[class="MuiAccordion-region"] > div');
 
+  }
+
+  /**
+   * Retrieves the Projects List container.
+   * @returns {Promise<Locator>} The Projects List container.
+   */
+  async getProjectsListContainer(): Promise<Locator> {
+    this.logger.info('Retrieving the Projects List container');
+    await this.page.waitForTimeout(10000);
+    await this.projectsListContainer.waitFor({ state: 'attached' });
+    return this.projectsListContainer;
   }
 
   /**

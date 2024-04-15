@@ -1,24 +1,24 @@
-import { BaseComponent } from "../../base/baseComponent";
 import { Locator, Page } from "@playwright/test";
+import { basePage } from "../../base/basePage";
 
 /**
  * Class for PreviewPage
  */
-export class PreviewPage extends BaseComponent {
-  private container;
+export class PreviewPage extends basePage {
   private readonly iaMessage: Locator;
   private readonly myMessage: Locator;
   private readonly messageField: Locator;
   private readonly sendButton: Locator;
+  private readonly chatContainer: Locator;
 
 
-  constructor(page: Page, container: Locator) {
+  constructor(page: Page) {
     super(page);
-    this.container = container;
-    this.iaMessage = this.container.locator('[data-testid="chat-message-received"]');
-    this.myMessage = this.container.locator('[data-testid="chat-message-sent"]');
-    this.messageField = this.container.locator('[data-testid="chat-input"]');
-    this.sendButton = this.container.locator('[data-testid="chat-button"]');
+    this.chatContainer = this.page.locator('[data-testid="chat-wrapper"]')
+    this.iaMessage = this.chatContainer.locator('[data-testid="chat-message-received"]');
+    this.myMessage = this.chatContainer.locator('[data-testid="chat-message-sent"]');
+    this.messageField = this.chatContainer.getByTestId('chat-input');
+    this.sendButton = this.chatContainer.locator('[data-testid="chat-button"]');
   }
 
   /**
@@ -57,8 +57,9 @@ export class PreviewPage extends BaseComponent {
    */
   async enterMessage(message: string): Promise<void> {
     this.logger.info('Entering message into the message field');
-    await this.messageField.waitFor({ state: 'attached' });
-    await this.messageField.fill(message);
+    await this.page.waitForTimeout(3000);
+    //await this.messageField.waitFor({ state: 'attached' });
+    await this.messageField.fill(message, { force: true });
   }
 
   /**
