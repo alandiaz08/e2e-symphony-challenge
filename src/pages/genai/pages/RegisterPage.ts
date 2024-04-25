@@ -22,17 +22,17 @@ export class RegisterPage extends basePage {
 
   constructor(page: Page) {
     super(page);
-    this.userNameField = this.page.locator('');
-    this.fullNameField = this.page.locator('');
-    this.passwordField = this.page.locator('');
-    this.emailField = this.page.locator('');
-    this.continueButton = this.page.locator('');
-    this.agreeTermsCheckbox = this.page.locator('');
-    this.usernameIsRequiredMessage = this.page.locator('');
-    this.passwordIsRequiredMessage = this.page.locator('');
-    this.fullNameIsRequiredMessage = this.page.locator('');
-    this.emailIsRequiredMessage = this.page.locator('');
-    this.loginButton = this.page.locator('');    
+    this.userNameField = this.page.locator('[id="username"]');
+    this.fullNameField = this.page.locator('[id="name"]');
+    this.passwordField = this.page.locator('[id="password"]');
+    this.emailField = this.page.locator('[id="email"]');
+    this.continueButton = this.page.locator('[data-testid="register-button"]');
+    this.agreeTermsCheckbox = this.page.locator('[data-testid="checkbox-input"]');
+    this.usernameIsRequiredMessage = this.page.locator('[id="username-helper-text"]');
+    this.passwordIsRequiredMessage = this.page.locator('[id="password-helper-text"]');
+    this.fullNameIsRequiredMessage = this.page.locator('[id="name-helper-text"]');
+    this.emailIsRequiredMessage = this.page.locator('[id="email-helper-text"]');
+    this.loginButton = this.page.locator('[href="/login"]');
   }
 
 /**
@@ -105,7 +105,7 @@ async isContinueButtonVisible(): Promise<boolean> {
 async checkAgreeTermsCheckbox(): Promise<void> {
   this.logger.info('Checking the agree terms checkbox');
   await this.agreeTermsCheckbox.waitFor({ state: 'attached' });
-  await this.agreeTermsCheckbox.check();
+  await this.agreeTermsCheckbox.click();
 }
 
 /**
@@ -114,7 +114,7 @@ async checkAgreeTermsCheckbox(): Promise<void> {
 async uncheckAgreeTermsCheckbox(): Promise<void> {
   this.logger.info('Unchecking the agree terms checkbox');
   await this.agreeTermsCheckbox.waitFor({ state: 'attached' });
-  await this.agreeTermsCheckbox.uncheck();
+  await this.agreeTermsCheckbox.click();
 }
 
 /**
