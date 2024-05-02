@@ -11,7 +11,7 @@ import { PreviewPage } from '../src/pages/genai/pages/PreviewPage';
 const userSelector = new testUsersSelector();
 
 test.describe('Preview Tests @full-regression @preview', () => {
-  test('Login by email', async ({ page }, testInfo) => {
+  test('Happy Path chat with IA', async ({ page }, testInfo) => {
     //Arrange
     const user = userSelector.getUserByDescription('qasuperuser');
     const login = new LoginPage(page);

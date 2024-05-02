@@ -14,7 +14,7 @@ test.describe('Login Tests @full-regression @login', () => {
     const login = new LoginPage(page);
     const register = new RegisterPage(page);
     const project = new ProjectPage(page);
-    const randomUserNameGen = testRandomData.generateRandomName();
+    const randomUserNameGen = testRandomData.generateRandomNameByValue(7);
     const randomNameGen = testRandomData.generateRandomName();
     const randomEmailGen = testRandomData.generateRandomAlphaNumeric() + '@mail.com';
     const randomPasswordGen = testRandomData.generateRandomAlphaNumeric();
@@ -81,7 +81,7 @@ test.describe('Login Tests @full-regression @login', () => {
     //Arrange
     const login = new LoginPage(page);
     const register = new RegisterPage(page);
-    const randomUserNameGen = testRandomData.generateRandomName();
+    const randomUserNameGen = testRandomData.generateRandomNameByValue(7);
     const randomPasswordGen = testRandomData.generateRandomAlphaNumeric();
 
 
@@ -89,7 +89,7 @@ test.describe('Login Tests @full-regression @login', () => {
     await login.navigateToLoginPage();
 
     await login.clickRegisterButton()
-      .then(() => register.enterUserName(randomUserNameGen))
+      .then(() => register.enterFullName(randomUserNameGen))
       .then(() => register.enterPassword(randomPasswordGen))
       .then(() => register.checkAgreeTermsCheckbox())
       .then(() => register.clickContinueButton());
@@ -103,7 +103,7 @@ test.describe('Login Tests @full-regression @login', () => {
     const login = new LoginPage(page);
     const register = new RegisterPage(page);
     const randomEmailGen = testRandomData.generateRandomAlphaNumeric() + '@mail.com';
-    const randomUserNameGen = testRandomData.generateRandomName();
+    const randomUserNameGen = testRandomData.generateRandomNameByValue(7);
     const randomPasswordGen = testRandomData.generateRandomAlphaNumeric();
 
     //Act
@@ -117,6 +117,6 @@ test.describe('Login Tests @full-regression @login', () => {
       .then(() => register.clickContinueButton());
     
     //Assert
-    await expect(await register.hasEmailIsRequiredMessage()).toBe(true);
+    await expect(await register.hasFullNameIsRequiredMessage()).toBe(true);
   });
 });
