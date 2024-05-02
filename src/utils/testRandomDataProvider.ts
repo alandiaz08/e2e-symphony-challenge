@@ -3,6 +3,10 @@ export class testRandomDataProvider {
     return Math.random().toString(36).substring(2, 7);
   }
 
+  generateRandomNameByValue(length) {
+    return Math.random().toString(36).substring(2, 2 + length);
+  }
+
   generateRandomNumber() {
     return (Math.floor(Math.random() * 9000000) + 1000000).toString();
   }
