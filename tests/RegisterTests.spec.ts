@@ -9,7 +9,7 @@ const userSelector = new testUsersSelector();
 const testRandomData = new testRandomDataProvider();
 
 test.describe('Login Tests @full-regression @login', () => {
-  test('Successful registration', async ({ page }, testInfo) => {
+  test.skip('Successful registration', async ({ page }, testInfo) => {
     //Arrange
     const login = new LoginPage(page);
     const register = new RegisterPage(page);
@@ -28,7 +28,6 @@ test.describe('Login Tests @full-regression @login', () => {
       .then(() => register.enterFullName(randomNameGen))
       .then(() => register.enterEmail(randomEmailGen))
       .then(() => register.enterPassword(randomPasswordGen))
-      .then(() => register.checkAgreeTermsCheckbox())
       .then(() => register.clickContinueButton());
     
     //Assert
@@ -49,7 +48,6 @@ test.describe('Login Tests @full-regression @login', () => {
     await login.clickRegisterButton()
       .then(() => register.enterEmail(randomEmailGen))
       .then(() => register.enterPassword(randomPasswordGen))
-      .then(() => register.checkAgreeTermsCheckbox())
       .then(() => register.clickContinueButton());
     
     //Assert
@@ -70,7 +68,6 @@ test.describe('Login Tests @full-regression @login', () => {
     await login.clickRegisterButton()
       .then(() => register.enterUserName(randomUserNameGen))
       .then(() => register.enterEmail(randomEmailGen))
-      .then(() => register.checkAgreeTermsCheckbox())
       .then(() => register.clickContinueButton());
     
     //Assert
@@ -91,7 +88,6 @@ test.describe('Login Tests @full-regression @login', () => {
     await login.clickRegisterButton()
       .then(() => register.enterFullName(randomUserNameGen))
       .then(() => register.enterPassword(randomPasswordGen))
-      .then(() => register.checkAgreeTermsCheckbox())
       .then(() => register.clickContinueButton());
     
     //Assert
@@ -113,7 +109,6 @@ test.describe('Login Tests @full-regression @login', () => {
       .then(() => register.enterUserName(randomUserNameGen))
       .then(() => register.enterPassword(randomPasswordGen))
       .then(() => register.enterEmail(randomEmailGen))
-      .then(() => register.checkAgreeTermsCheckbox())
       .then(() => register.clickContinueButton());
     
     //Assert

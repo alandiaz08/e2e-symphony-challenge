@@ -29,7 +29,7 @@ test.describe('Preview Tests @full-regression @preview', () => {
 
     const project = new ProjectPage(page);
     const projectList = new ProjectsResultList(page, await project.getProjectsListContainer());
-    const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(0));
+    const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));
     
     await projectItem.clickProjectPicture();
     const projecAi = new ProjectsAiChat(page,await projectBuilder.getChatContainer());
