@@ -20,11 +20,11 @@ export class ProjectPage extends basePage {
   constructor(page: Page) {
     super(page);
     this.projectTitle = page.locator('div > h1');
-    this.newProjectButton = this.page.locator('[data-testid="new-project"]');
+    this.newProjectButton = this.page.locator('[data-testid="info-card-header"]');
     this.yourProjectButton = this.page.locator('[id="simple-tab-0"]');
     this.allProjectButton = this.page.locator('[id="simple-tab-1"]');
     this.newProjectModalContainer = this.page.locator('[aria-labelledby="form-dialog-title"]');
-    this.projectsListContainer = this.page.locator('[class="MuiAccordion-region"] > div');
+    this.projectsListContainer = this.page.locator('[data-testid="workspace-projects"]');
 
   }
 

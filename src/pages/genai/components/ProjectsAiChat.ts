@@ -15,10 +15,10 @@ export class ProjectsAiChat extends BaseComponent {
   constructor(page: Page, container: Locator) {
     super(page);
     this.container = container;
-    this.iaMessage = this.container.locator('[data-testid="chat-messages"] > div:nth-child(2) > div:nth-child(2)');
-    this.myMessage = this.container.locator('[data-testid="chat-messages"]');
-    this.messageField = this.container.locator('[data-testid="chat-builder-input"]');
-    this.sendButton = this.container.locator('[data-testid="chat-builder-submit"]');
+    this.iaMessage = this.container.locator('[data-testid="chat-message-received"]').nth(0);
+    this.myMessage = this.container.locator('[data-testid="chat-message-sent"]');
+    this.messageField = this.container.locator('[data-testid="chat-input"]');
+    this.sendButton = this.container.locator('[data-testid="SendIcon"]');
   }
 
   /**

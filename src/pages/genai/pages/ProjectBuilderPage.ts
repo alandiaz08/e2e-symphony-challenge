@@ -12,15 +12,14 @@ export class ProjectBuilderPage extends basePage {
   //private readonly publishButton: Locator;
   private readonly previewButton: Locator;
   private readonly shareButton: Locator;
-  private readonly favoriteButton: Locator;
   private readonly actionButton: Locator;
   private readonly deleteButton: Locator;
-  private readonly backButton: Locator;
-  private readonly overviewButton: Locator;
-  private readonly dataSourceButton: Locator;
+  private readonly metricsButton: Locator;
+  private readonly answersButton: Locator;
+  private readonly filesButton: Locator;
   private readonly integrationsButton: Locator;
-  private readonly performanceButton: Locator;
-  private readonly personalitySettingsIaListContainer: Locator;
+  private readonly flowsButton: Locator;
+  private readonly configButton: Locator;
   private readonly chatContainer: Locator;
 
   /**
@@ -34,16 +33,15 @@ export class ProjectBuilderPage extends basePage {
     //this.publishButton = this.page.locator('[class="css-1axyrzt"] > button:nth-child(1)');
     this.previewButton = this.page.locator('[data-testid="preview-btn"]');
     this.shareButton = this.page.locator('[data-testid="share-dialog-button"]');
-    this.favoriteButton = this.page.locator('[data-testid="favorite-button"]');
     this.actionButton = this.page.locator('[data-testid="dropdown-button"]');
     this.deleteButton = this.page.locator('ul > li');
-    this.backButton = this.page.locator('[data-testid="page-header"] > div:nth-child(1)');
-    this.overviewButton = this.page.locator('[id="simple-tab-1"]');
-    this.dataSourceButton = this.page.locator('[id="simple-tab-2"]');
+    this.metricsButton = this.page.locator('');
+    this.answersButton = this.page.locator('');
+    this.filesButton = this.page.locator('');
     this.integrationsButton = this.page.locator('[id="simple-tab-3"]');
-    this.performanceButton = this.page.locator('[id="simple-tab-4"]');
-    this.personalitySettingsIaListContainer = this.page.locator('[data-testid="config-element-list"]');
-    this.chatContainer = this.page.locator('[data-testid="chat-builder"]');
+    this.flowsButton = this.page.locator('');
+    this.configButton = this.page.locator('');
+    this.chatContainer = this.page.locator('[data-testid="chat-wrapper"]');
   }
 
   /**
@@ -64,30 +62,6 @@ export class ProjectBuilderPage extends basePage {
     this.logger.info('Entering text into the project description field');
     await this.projectDescriptionField.waitFor({ state: 'attached' });
     await this.projectDescriptionField.fill(description);
-  }
-
-  /**
-   * Checks if the Publish button is visible.
-   * @return {Promise<boolean>} True if the Publish button is visible, false otherwise.
-   */
-  async isPublishButtonVisible(): Promise<boolean> {
-    this.logger.info('Checking if the Publish button is visible');
-    try {
-      await this.publishButton.waitFor({ state: 'attached' });
-      return await this.publishButton.isVisible();
-    } catch (error) {
-      this.logger.error('Error when checking visibility of the Publish button:', error);
-      return false;
-    }
-  }
-
-  /**
-   * Clicks on the Publish button.
-   */
-  async clickPublishButton(): Promise<void> {
-    this.logger.info('Clicking on the Publish button');
-    await this.publishButton.waitFor({ state: 'attached' });
-    await this.publishButton.click();
   }
 
   /**
@@ -139,30 +113,6 @@ export class ProjectBuilderPage extends basePage {
   }
 
   /**
-   * Checks if the Favorite button is visible.
-   * @return {Promise<boolean>} True if the Favorite button is visible, false otherwise.
-   */
-  async isFavoriteButtonVisible(): Promise<boolean> {
-    this.logger.info('Checking if the Favorite button is visible');
-    try {
-      await this.favoriteButton.waitFor({ state: 'attached' });
-      return await this.favoriteButton.isVisible();
-    } catch (error) {
-      this.logger.error('Error when checking visibility of the Favorite button:', error);
-      return false;
-    }
-  }
-
-  /**
-   * Clicks on the Favorite button.
-   */
-  async clickFavoriteButton(): Promise<void> {
-    this.logger.info('Clicking on the Favorite button');
-    await this.favoriteButton.waitFor({ state: 'attached' });
-    await this.favoriteButton.click();
-  }
-
-  /**
    * Checks if the Action button is visible.
    * @return {Promise<boolean>} True if the Action button is visible, false otherwise.
    */
@@ -206,78 +156,6 @@ export class ProjectBuilderPage extends basePage {
   }
 
   /**
-   * Checks if the Back button is visible.
-   * @return {Promise<boolean>} True if the Back button is visible, false otherwise.
-   */
-  async isBackButtonVisible(): Promise<boolean> {
-    this.logger.info('Checking if the Back button is visible');
-    try {
-      await this.backButton.waitFor({ state: 'attached' });
-      return await this.backButton.isVisible();
-    } catch (error) {
-      this.logger.error('Error when checking visibility of the Back button:', error);
-      return false;
-    }
-  }
-
-  /**
-   * Clicks on the Back button.
-   */
-  async clickBackButton(): Promise<void> {
-    this.logger.info('Clicking on the Back button');
-    await this.backButton.waitFor({ state: 'attached' });
-    await this.backButton.click();
-  }
-
-  /**
-   * Checks if the Overview button is visible.
-   * @return {Promise<boolean>} True if the Overview button is visible, false otherwise.
-   */
-  async isOverviewButtonVisible(): Promise<boolean> {
-    this.logger.info('Checking if the Overview button is visible');
-    try {
-      await this.overviewButton.waitFor({ state: 'attached' });
-      return await this.overviewButton.isVisible();
-    } catch (error) {
-      this.logger.error('Error when checking visibility of the Overview button:', error);
-      return false;
-    }
-  }
-
-  /**
-   * Clicks on the Overview button.
-   */
-  async clickOverviewButton(): Promise<void> {
-    this.logger.info('Clicking on the Overview button');
-    await this.overviewButton.waitFor({ state: 'attached' });
-    await this.overviewButton.click();
-  }
-
-  /**
-   * Checks if the Data Source button is visible.
-   * @return {Promise<boolean>} True if the Data Source button is visible, false otherwise.
-   */
-  async isDataSourceButtonVisible(): Promise<boolean> {
-    this.logger.info('Checking if the Data Source button is visible');
-    try {
-      await this.dataSourceButton.waitFor({ state: 'attached' });
-      return await this.dataSourceButton.isVisible();
-    } catch (error) {
-      this.logger.error('Error when checking visibility of the Data Source button:', error);
-      return false;
-    }
-  }
-
-  /**
-   * Clicks on the Data Source button.
-   */
-  async clickDataSourceButton(): Promise<void> {
-    this.logger.info('Clicking on the Data Source button');
-    await this.dataSourceButton.waitFor({ state: 'attached' });
-    await this.dataSourceButton.click();
-  }
-
-  /**
    * Checks if the Integrations button is visible.
    * @return {Promise<boolean>} True if the Integrations button is visible, false otherwise.
    */
@@ -302,40 +180,6 @@ export class ProjectBuilderPage extends basePage {
   }
 
   /**
-   * Checks if the Performance button is visible.
-   * @return {Promise<boolean>} True if the Performance button is visible, false otherwise.
-   */
-  async isPerformanceButtonVisible(): Promise<boolean> {
-    this.logger.info('Checking if the Performance button is visible');
-    try {
-      await this.performanceButton.waitFor({ state: 'attached' });
-      return await this.performanceButton.isVisible();
-    } catch (error) {
-      this.logger.error('Error when checking visibility of the Performance button:', error);
-      return false;
-    }
-  }
-
-  /**
-   * Clicks on the Performance button.
-   */
-  async clickPerformanceButton(): Promise<void> {
-    this.logger.info('Clicking on the Performance button');
-    await this.performanceButton.waitFor({ state: 'attached' });
-    await this.performanceButton.click();
-  }
-
-  /**
-   * Retrieves the Personality Settings IA List container.
-   * @returns {Promise<Locator>} The Personality Settings IA List container.
-   */
-  async getPersonalitySettingsIaListContainer() {
-    this.logger.info('Retrieving the Personality Settings IA List container');
-    await this.personalitySettingsIaListContainer.waitFor({ state: 'attached' });
-    return this.personalitySettingsIaListContainer;
-  }
-
-  /**
    * Retrieves the Chat container.
    * @returns {Promise<Locator>} The Chat container.
    */
@@ -344,5 +188,50 @@ export class ProjectBuilderPage extends basePage {
     await this.chatContainer.waitFor({ state: 'attached' });
     return this.chatContainer;
   }
+
+/**
+ * Clicks on the metrics button.
+ */
+async clickMetricsButton(): Promise<void> {
+  this.logger.info('Clicking on the metrics button');
+  await this.metricsButton.waitFor({ state: 'attached' });
+  await this.metricsButton.click();
+}
+
+/**
+ * Clicks on the answers button.
+ */
+async clickAnswersButton(): Promise<void> {
+  this.logger.info('Clicking on the answers button');
+  await this.answersButton.waitFor({ state: 'attached' });
+  await this.answersButton.click();
+}
+
+/**
+ * Clicks on the files button.
+ */
+async clickFilesButton(): Promise<void> {
+  this.logger.info('Clicking on the files button');
+  await this.filesButton.waitFor({ state: 'attached' });
+  await this.filesButton.click();
+}
+
+/**
+ * Clicks on the flows button.
+ */
+async clickFlowsButton(): Promise<void> {
+  this.logger.info('Clicking on the flows button');
+  await this.flowsButton.waitFor({ state: 'attached' });
+  await this.flowsButton.click();
+}
+
+/**
+ * Clicks on the config button.
+ */
+async clickConfigButton(): Promise<void> {
+  this.logger.info('Clicking on the config button');
+  await this.configButton.waitFor({ state: 'attached' });
+  await this.configButton.click();
+}
 
 }

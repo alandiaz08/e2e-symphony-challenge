@@ -8,8 +8,8 @@ import { Locator, Page } from "@playwright/test";
 export class header extends BaseComponent {
   private readonly projectsModule: Locator;
   private readonly foldersModule: Locator;
-  private readonly integrationsModule: Locator;
-  private readonly analyticsModule: Locator;
+  private readonly ownersList: Locator;
+  private readonly owners: Locator;
   private readonly accountButton: Locator;
   private readonly profileButton: Locator;
   private readonly settingsButton: Locator;
@@ -25,8 +25,8 @@ export class header extends BaseComponent {
     super(page);
     this.projectsModule = this.page.locator('[href="#/projects"]');
     this.foldersModule = this.page.locator('[href="#/folders"]');
-    this.integrationsModule = this.page.locator('[href="#/integrations"]');
-    this.analyticsModule = this.page.locator('[href="#/integrations"]');
+    this.ownersList = this.page.locator('[href="#/folders"]');
+    this.owners = this.page.locator('[href="#/folders"]');
     this.accountButton = this.page.locator('div.css-praqp0 > div > button');
     this.profileButton = this.page.locator('div > ul > li:nth-child(1)');
     this.settingsButton = this.page.locator('div > ul > li:nth-child(2)');
@@ -99,74 +99,6 @@ export class header extends BaseComponent {
     this.logger.info('Retrieving the text of the Folders module');
     await this.foldersModule.waitFor({ state: 'attached' });
     return await this.foldersModule.textContent();
-  }
-
-  /**
-   * Checks if the Integrations module is visible.
-   * @return {Promise<boolean>} True if visible, false otherwise.
-   */
-  async isIntegrationsModuleVisible(): Promise<boolean> {
-    this.logger.info('Checking if the Integrations module is visible');
-    try {
-      await this.integrationsModule.waitFor({ state: 'attached' });
-      return await this.integrationsModule.isVisible();
-    } catch (error) {
-      this.logger.error('Error checking visibility of Integrations module:', error);
-      return false;
-    }
-  }
-
-  /**
-   * Clicks on the Integrations module.
-   */
-  async clickIntegrationsModule(): Promise<void> {
-    this.logger.info('Clicking on the Integrations module');
-    await this.integrationsModule.waitFor({ state: 'attached' });
-    await this.integrationsModule.click();
-  }
-
-  /**
-   * Retrieves the text of the Integrations module.
-   * @return {Promise<string>}
-   */
-  async getIntegrationsModuleText(): Promise<string> {
-    this.logger.info('Retrieving the text of the Integrations module');
-    await this.integrationsModule.waitFor({ state: 'attached' });
-    return await this.integrationsModule.textContent();
-  }
-
-  /**
-   * Checks if the Analytics module is visible.
-   * @return {Promise<boolean>} True if visible, false otherwise.
-   */
-  async isAnalyticsModuleVisible(): Promise<boolean> {
-    this.logger.info('Checking if the Analytics module is visible');
-    try {
-      await this.analyticsModule.waitFor({ state: 'attached' });
-      return await this.analyticsModule.isVisible();
-    } catch (error) {
-      this.logger.error('Error checking visibility of Analytics module:', error);
-      return false;
-    }
-  }
-
-  /**
-   * Clicks on the Analytics module.
-   */
-  async clickAnalyticsModule(): Promise<void> {
-    this.logger.info('Clicking on the Analytics module');
-    await this.analyticsModule.waitFor({ state: 'attached' });
-    await this.analyticsModule.click();
-  }
-
-  /**
-   * Retrieves the text of the Analytics module.
-   * @return {Promise<string>}
-   */
-  async getAnalyticsModuleText(): Promise<string> {
-    this.logger.info('Retrieving the text of the Analytics module');
-    await this.analyticsModule.waitFor({ state: 'attached' });
-    return await this.analyticsModule.textContent();
   }
 
   /**
@@ -303,6 +235,64 @@ export class header extends BaseComponent {
     this.logger.info('Retrieving the text of the Logout button');
     await this.logoutButton.waitFor({ state: 'attached' });
     return await this.logoutButton.textContent();
+  }
+
+  /**
+   * Clicks on the owners list.
+   */
+  async clickOwnersList(): Promise<void> {
+    this.logger.info('Clicking on the owners list');
+    await this.ownersList.waitFor({ state: 'attached' });
+    await this.ownersList.click();
+  }
+
+  /**
+   * Checks if the owners list is visible.
+   * @return {Promise<boolean>} True if the owners list is visible, false otherwise.
+   */
+  async isOwnersListVisible(): Promise<boolean> {
+    this.logger.info('Checking if the owners list is visible');
+    try {
+      await this.ownersList.waitFor({ state: 'attached' });
+      return await this.ownersList.isVisible();
+    } catch (error) {
+      this.logger.error('Error while checking for owners list visibility:', error);
+      return false;
+    }
+  }
+
+  /**
+   * Clicks on the owners element.
+   */
+  async clickOwners(): Promise<void> {
+    this.logger.info('Clicking on the owners element');
+    await this.owners.waitFor({ state: 'attached' });
+    await this.owners.click();
+  }
+
+  /**
+   * Checks if the owners element is visible.
+   * @return {Promise<boolean>} True if the owners element is visible, false otherwise.
+   */
+  async isOwnersVisible(): Promise<boolean> {
+    this.logger.info('Checking if the owners element is visible');
+    try {
+      await this.owners.waitFor({ state: 'attached' });
+      return await this.owners.isVisible();
+    } catch (error) {
+      this.logger.error('Error while checking for owners element visibility:', error);
+      return false;
+    }
+  }
+
+  /**
+   * Retrieves the text content of the owners element.
+   * @return {Promise<string | null>} The text content of the owners element.
+   */
+  async getOwnersText(): Promise<string | null> {
+    this.logger.info('Getting the text of the owners element');
+    await this.owners.waitFor({ state: 'attached' });
+    return await this.owners.textContent();
   }
 
 }
