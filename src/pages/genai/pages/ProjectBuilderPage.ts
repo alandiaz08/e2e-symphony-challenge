@@ -21,6 +21,14 @@ export class ProjectBuilderPage extends basePage {
   private readonly flowsButton: Locator;
   private readonly configButton: Locator;
   private readonly chatContainer: Locator;
+  private readonly metricsContainer: Locator;
+  private readonly answersContainer: Locator;
+  private readonly filesContainer: Locator;
+  private readonly integrationsContainer: Locator;
+  private readonly flowsContainer: Locator;
+  private readonly configsContainer: Locator;
+  private readonly connectApiOrDataBaseContainer: Locator;
+
 
   /**
    * Constructor of the project page
@@ -35,13 +43,20 @@ export class ProjectBuilderPage extends basePage {
     this.shareButton = this.page.locator('[data-testid="share-dialog-button"]');
     this.actionButton = this.page.locator('[data-testid="dropdown-button"]');
     this.deleteButton = this.page.locator('ul > li');
-    this.metricsButton = this.page.locator('');
-    this.answersButton = this.page.locator('');
-    this.filesButton = this.page.locator('');
+    this.metricsButton = this.page.locator('[data-testid="performance"]');
+    this.answersButton = this.page.locator('[data-testid="responses"]');
+    this.filesButton = this.page.locator('[data-testid="data-source"]');
     this.integrationsButton = this.page.locator('[id="simple-tab-3"]');
-    this.flowsButton = this.page.locator('');
-    this.configButton = this.page.locator('');
+    this.flowsButton = this.page.locator('[data-testid="flows"]');
+    this.configButton = this.page.locator('[data-testid="overview"]');
     this.chatContainer = this.page.locator('[data-testid="chat-wrapper"]');
+    this.metricsContainer = this.page.locator('[id="simple-tabpanel-1"]');
+    this.answersContainer = this.page.locator('[id="simple-tabpanel-2"]');
+    this.filesContainer = this.page.locator('[id="simple-tabpanel-3"]');
+    this.integrationsContainer = this.page.locator('[id="simple-tabpanel-4"]');
+    this.flowsContainer = this.page.locator('[id="simple-tabpanel-5"]');
+    this.configsContainer = this.page.locator('[id="simple-tabpanel-6"]');
+    this.connectApiOrDataBaseContainer = this.page.locator('[role="dialog"]');
   }
 
   /**
@@ -189,49 +204,119 @@ export class ProjectBuilderPage extends basePage {
     return this.chatContainer;
   }
 
-/**
- * Clicks on the metrics button.
- */
-async clickMetricsButton(): Promise<void> {
-  this.logger.info('Clicking on the metrics button');
-  await this.metricsButton.waitFor({ state: 'attached' });
-  await this.metricsButton.click();
-}
+  /**
+   * Clicks on the metrics button.
+   */
+  async clickMetricsButton(): Promise<void> {
+    this.logger.info('Clicking on the metrics button');
+    await this.metricsButton.waitFor({ state: 'attached' });
+    await this.metricsButton.click();
+  }
 
-/**
- * Clicks on the answers button.
- */
-async clickAnswersButton(): Promise<void> {
-  this.logger.info('Clicking on the answers button');
-  await this.answersButton.waitFor({ state: 'attached' });
-  await this.answersButton.click();
-}
+  /**
+   * Clicks on the answers button.
+   */
+  async clickAnswersButton(): Promise<void> {
+    this.logger.info('Clicking on the answers button');
+    await this.answersButton.waitFor({ state: 'attached' });
+    await this.answersButton.click();
+  }
 
-/**
- * Clicks on the files button.
- */
-async clickFilesButton(): Promise<void> {
-  this.logger.info('Clicking on the files button');
-  await this.filesButton.waitFor({ state: 'attached' });
-  await this.filesButton.click();
-}
+  /**
+   * Clicks on the files button.
+   */
+  async clickFilesButton(): Promise<void> {
+    this.logger.info('Clicking on the files button');
+    await this.filesButton.waitFor({ state: 'attached' });
+    await this.filesButton.click();
+  }
 
-/**
- * Clicks on the flows button.
- */
-async clickFlowsButton(): Promise<void> {
-  this.logger.info('Clicking on the flows button');
-  await this.flowsButton.waitFor({ state: 'attached' });
-  await this.flowsButton.click();
-}
+  /**
+   * Clicks on the flows button.
+   */
+  async clickFlowsButton(): Promise<void> {
+    this.logger.info('Clicking on the flows button');
+    await this.flowsButton.waitFor({ state: 'attached' });
+    await this.flowsButton.click();
+  }
 
-/**
- * Clicks on the config button.
- */
-async clickConfigButton(): Promise<void> {
-  this.logger.info('Clicking on the config button');
-  await this.configButton.waitFor({ state: 'attached' });
-  await this.configButton.click();
-}
+  /**
+   * Clicks on the config button.
+   */
+  async clickConfigButton(): Promise<void> {
+    this.logger.info('Clicking on the config button');
+    await this.configButton.waitFor({ state: 'attached' });
+    await this.configButton.click();
+  }
+
+  /**
+   * Retrieves the metrics container.
+   * @return {Promise<Locator>} The metrics container.
+   */
+  async getMetricsContainer(): Promise<Locator> {
+    this.logger.info('Retrieving the metrics container');
+    await this.metricsContainer.waitFor({ state: 'attached' });
+    return this.metricsContainer;
+  }
+
+  /**
+   * Retrieves the answers container.
+   * @return {Promise<Locator>} The answers container.
+   */
+  async getAnswersContainer(): Promise<Locator> {
+    this.logger.info('Retrieving the answers container');
+    await this.answersContainer.waitFor({ state: 'attached' });
+    return this.answersContainer;
+  }
+
+  /**
+   * Retrieves the files container.
+   * @return {Promise<Locator>} The files container.
+   */
+  async getFilesContainer(): Promise<Locator> {
+    this.logger.info('Retrieving the files container');
+    await this.filesContainer.waitFor({ state: 'attached' });
+    return this.filesContainer;
+  }
+
+  /**
+   * Retrieves the integrations container.
+   * @return {Promise<Locator>} The integrations container.
+   */
+  async getIntegrationsContainer(): Promise<Locator> {
+    this.logger.info('Retrieving the integrations container');
+    await this.integrationsContainer.waitFor({ state: 'attached' });
+    return this.integrationsContainer;
+  }
+
+  /**
+   * Retrieves the flows container.
+   * @return {Promise<Locator>} The flows container.
+   */
+  async getFlowsContainer(): Promise<Locator> {
+    this.logger.info('Retrieving the flows container');
+    await this.flowsContainer.waitFor({ state: 'attached' });
+    return this.flowsContainer;
+  }
+
+  /**
+   * Retrieves the configs container.
+   * @return {Promise<Locator>} The configs container.
+   */
+  async getConfigsContainer(): Promise<Locator> {
+    this.logger.info('Retrieving the configs container');
+    await this.configsContainer.waitFor({ state: 'attached' });
+    return this.configsContainer;
+  }
+
+  /**
+   * Retrieves the Connect API or Database container.
+   * @returns {Promise<Locator>}
+   */
+  async getConnectApiOrDataBaseContainer(): Promise<Locator> {
+    this.logger.info('Retrieving the Connect API or Database container');
+    await this.connectApiOrDataBaseContainer.waitFor({ state: 'attached' });
+    return this.connectApiOrDataBaseContainer;
+  }
 
 }
