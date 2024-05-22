@@ -28,6 +28,8 @@ export class ProjectBuilderPage extends basePage {
   private readonly flowsContainer: Locator;
   private readonly configsContainer: Locator;
   private readonly connectApiOrDataBaseContainer: Locator;
+  private readonly connectApiContainer: Locator;
+  private readonly connectDataBaseContainer: Locator;
 
 
   /**
@@ -57,6 +59,8 @@ export class ProjectBuilderPage extends basePage {
     this.flowsContainer = this.page.locator('[id="simple-tabpanel-5"]');
     this.configsContainer = this.page.locator('[id="simple-tabpanel-6"]');
     this.connectApiOrDataBaseContainer = this.page.locator('[role="dialog"]');
+    this.connectApiContainer = this.page.locator('[role="dialog"]');
+    this.connectDataBaseContainer = this.page.locator('[role="dialog"]');
   }
 
   /**
@@ -317,6 +321,26 @@ export class ProjectBuilderPage extends basePage {
     this.logger.info('Retrieving the Connect API or Database container');
     await this.connectApiOrDataBaseContainer.waitFor({ state: 'attached' });
     return this.connectApiOrDataBaseContainer;
+  }
+
+  /**
+ * Retrieves the container for Connect API.
+ * @returns {Promise<Locator>}
+ */
+  async getConnectApiContainer(): Promise<Locator> {
+    this.logger.info('Retrieving the Connect API container');
+    await this.connectApiContainer.waitFor({ state: 'attached' });
+    return this.connectApiContainer;
+  }
+
+  /**
+   * Retrieves the container for Connect Database.
+   * @returns {Promise<Locator>}
+   */
+  async getConnectDataBaseContainer(): Promise<Locator> {
+    this.logger.info('Retrieving the Connect Database container');
+    await this.connectDataBaseContainer.waitFor({ state: 'attached' });
+    return this.connectDataBaseContainer;
   }
 
 }
