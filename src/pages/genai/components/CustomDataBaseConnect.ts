@@ -189,7 +189,7 @@ export class CustomApiConnectModal extends BaseComponent {
     this.logger.info('Selecting data base type:' + type);
     await this.dataBaseTypeDropdown.waitFor({ state: 'attached' });
     await this.dataBaseTypeDropdown.click();
-    const option = this.dataBaseTypeDropdown.locator('[data-value="' + type + '"]');
+    const option = this.page.locator('[data-value="' + type + '"]');
     await option.click();
   }
 }
