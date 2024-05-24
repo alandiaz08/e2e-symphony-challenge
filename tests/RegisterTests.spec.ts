@@ -8,7 +8,7 @@ import { testRandomDataProvider } from '../src/utils/testRandomDataProvider';
 const userSelector = new testUsersSelector();
 const testRandomData = new testRandomDataProvider();
 
-test.describe('Register Tests @full-regression @login', () => {
+test.describe('Register Tests @full-regression @register', () => {
   test.skip('Successful registration', async ({ page }, testInfo) => {
     //Arrange
     const login = new LoginPage(page);
