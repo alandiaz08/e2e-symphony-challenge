@@ -26,11 +26,11 @@ export class WhatsAppConnectionPage extends BaseComponent {
   constructor(page: Page) {
     super(page);
     this.title = this.page.locator('[role="dialog"] h2');
-    this.description = this.page.locator('');
-    this.connectTag = this.page.locator('');
-    this.metaForDevelopersButton = this.page.locator('');
-    this.disconnectButton = this.page.locator('');
-    this.phoneNumberTitleConnector = this.page.locator('');
+    this.description = this.page.locator('div h5');
+    this.connectTag = this.page.locator('[data-testid="whatsapp-connected"]');
+    this.metaForDevelopersButton = this.page.locator('[data-testid="whatsapp-docs"]');
+    this.disconnectButton = this.page.locator('[data-testid="whatsapp-disconnect"]');
+    this.phoneNumberTitleConnector = this.page.locator('[id="telephone"]');
     this.phoneNumberConnectorField = this.page.locator('[data-testid="telephone"]');
     this.copyCallbackUrlCopyButton = this.page.locator('[data-testid="ContentCopyIcon"]').nth(0);
     this.copyCallbackUrlValue = this.page.locator('[id="callback_url"]');
