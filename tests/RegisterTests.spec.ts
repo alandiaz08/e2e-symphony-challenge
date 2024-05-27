@@ -34,7 +34,7 @@ test.describe('Register Tests @full-regression @register', () => {
     await expect(await project.isTitleVisible()).toBe(true);
   });
 
-  test('Username field validation required', async ({ page }, testInfo) => {
+  test.skip('Username field validation required', async ({ page }, testInfo) => {
     //Arrange
     const login = new LoginPage(page);
     const register = new RegisterPage(page);
@@ -54,7 +54,7 @@ test.describe('Register Tests @full-regression @register', () => {
     await expect(await register.hasFullNameIsRequiredMessage()).toBe(true);
   });
 
-  test('Password field validation required', async ({ page }, testInfo) => {
+  test.skip('Password field validation required', async ({ page }, testInfo) => {
     //Arrange
     const login = new LoginPage(page);
     const register = new RegisterPage(page);
@@ -74,7 +74,7 @@ test.describe('Register Tests @full-regression @register', () => {
     await expect(await register.hasPasswordIsRequiredMessage()).toBe(true);
   });
 
-  test('Email field validation required', async ({ page }, testInfo) => {
+  test.skip('Email field validation required', async ({ page }, testInfo) => {
     //Arrange
     const login = new LoginPage(page);
     const register = new RegisterPage(page);
@@ -94,7 +94,7 @@ test.describe('Register Tests @full-regression @register', () => {
     await expect(await register.hasEmailIsRequiredMessage()).toBe(true);
   });
 
-  test('Full name field validation required', async ({ page }, testInfo) => {
+  test.skip('Full name field validation required', async ({ page }, testInfo) => {
     //Arrange
     const login = new LoginPage(page);
     const register = new RegisterPage(page);

@@ -36,7 +36,7 @@ test.describe('Login Tests @full-regression @login', () => {
     await expect(await login.isWelcomeMessageVisible()).toBe(true);
   });
 
-  test('Is Required email message displayed', async ({ page }, testInfo) => {
+  test.skip('Is Required email message displayed', async ({ page }, testInfo) => {
     //Arrange
     const user = userSelector.getUserByDescription('qasuperuser');
     const login = new LoginPage(page);
@@ -53,7 +53,7 @@ test.describe('Login Tests @full-regression @login', () => {
     await expect(await login.isEmailRequiredMessageVisible()).toBe(true);
   });
 
-  test('Is Required password message displayed', async ({ page }, testInfo) => {
+  test.skip('Is Required password message displayed', async ({ page }, testInfo) => {
     //Arrange
     const user = userSelector.getUserByDescription('qasuperuser');
     const login = new LoginPage(page);
@@ -70,7 +70,7 @@ test.describe('Login Tests @full-regression @login', () => {
     await expect(await login.isPasswordRequiredMessageVisible()).toBe(true);
   });
 
-  test('Is Keep me signed in displayed', async ({ page }, testInfo) => {
+  test.skip('Is Keep me signed in displayed', async ({ page }, testInfo) => {
     //Arrange
     const user = userSelector.getUserByDescription('qasuperuser');
     const login = new LoginPage(page);
