@@ -48,7 +48,7 @@ export class ProjectBuilderPage extends basePage {
     this.metricsButton = this.page.locator('[data-testid="performance"]');
     this.answersButton = this.page.locator('[data-testid="responses"]');
     this.filesButton = this.page.locator('[data-testid="data-source"]');
-    this.integrationsButton = this.page.locator('[id="simple-tab-3"]');
+    this.integrationsButton = this.page.locator('[data-testid="integrations"]');
     this.flowsButton = this.page.locator('[data-testid="flows"]');
     this.configButton = this.page.locator('[data-testid="overview"]');
     this.chatContainer = this.page.locator('[data-testid="chat-wrapper"]');
@@ -59,8 +59,8 @@ export class ProjectBuilderPage extends basePage {
     this.flowsContainer = this.page.locator('[id="simple-tabpanel-5"]');
     this.configsContainer = this.page.locator('[id="simple-tabpanel-6"]');
     this.connectApiOrDataBaseContainer = this.page.locator('[role="dialog"]');
-    this.connectApiContainer = this.page.locator('[role="dialog"]');
-    this.connectDataBaseContainer = this.page.locator('[role="dialog"]');
+    this.connectApiContainer = this.page.locator('[role="dialog"]').nth(1);
+    this.connectDataBaseContainer = this.page.locator('[role="dialog"]').nth(1);
   }
 
   /**

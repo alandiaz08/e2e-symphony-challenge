@@ -107,7 +107,7 @@ export class CustomApiConnectModal extends BaseComponent {
     this.logger.info(`Selecting request: ${request}`);
     await this.requestDropdown.waitFor({ state: 'attached' });
     await this.requestDropdown.click();
-    const option = this.requestDropdown.locator(`[data-value="${request}"]`);
+    const option = this.locator(`[data-value="${request}"]`);
     await option.click();
   }
 

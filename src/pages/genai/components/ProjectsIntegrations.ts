@@ -17,10 +17,9 @@ export class ProjectsIntegrations extends BaseComponent {
   constructor(page: Page, container: Locator) {
     super(page);
     this.container = container;
-    this.customApiConnectorButton = this.container.getByTestId('active-integrations-list')
-      .locator('div').filter({ hasText: 'Conectar API personalizada' }).nth(1);
+    this.customApiConnectorButton = this.container.getByText('Conectar API o Base de Datos');
     this.integrationCardListContainer = this.container.locator('[data-testid="active-integrations-list"]');
-    this.connectCustomApiModalContainer = this.container.locator('[role="dialog"]');
+    this.connectCustomApiModalContainer = this.page.locator('[role="dialog"]');
     this.whatsappConnectModalContainer = this.page.locator('[role="dialog"]');
     this.genesysCloudModalContainer = this.page.locator('[role="dialog"]');
   }

@@ -2,29 +2,29 @@ import { BaseComponent } from "../../base/baseComponent";
 import { Locator, Page } from "@playwright/test";
 
 /**
- * Class for SelectTypeOfIntegrationModal
+ * Class for DeleteApiPopup
  */
-export class SelectTypeOfIntegrationModal extends BaseComponent {
+export class DeleteApiPopup extends BaseComponent {
   private container;
   private readonly title: Locator;
   private readonly description: Locator;
-  private readonly apiButton: Locator;
-  private readonly dataBaseButton: Locator;
+  private readonly cancelButton: Locator;
+  private readonly deleteButton: Locator;
 
 
   constructor(page: Page, container: Locator) {
     super(page);
     this.container = container;
-    this.title = this.container.locator('h2 div');
-    this.description = this.container.locator('p');
-    this.apiButton = this.container.locator('[src="/assets/integrations/api-short.png"]');
-    this.dataBaseButton = this.container.locator('[src="/assets/integrations/db-short.png"]');
+    this.title = this.container.locator('h2');
+    this.description = this.container.getByText('Estás a punto de eliminar la')
+    this.cancelButton = this.container.locator('div button').nth(0);
+    this.deleteButton = this.container.locator('div button + button');
   }
 
   /**
- * Checks if the title is visible.
- * @return {Promise<boolean>}
- */
+   * Checks if the title is visible.
+   * @return {Promise<boolean>}
+   */
   async isTitleVisible(): Promise<boolean> {
     this.logger.info('Checking if the title is visible');
     try {
@@ -72,51 +72,51 @@ export class SelectTypeOfIntegrationModal extends BaseComponent {
   }
 
   /**
-   * Checks if the API button is visible.
+   * Clicks the cancel button.
+   */
+  async clickCancelButton(): Promise<void> {
+    this.logger.info('Clicking the cancel button');
+    await this.cancelButton.waitFor({ state: 'attached' });
+    await this.cancelButton.click();
+  }
+
+  /**
+   * Checks if the cancel button is visible.
    * @return {Promise<boolean>}
    */
-  async isApiButtonVisible(): Promise<boolean> {
-    this.logger.info('Checking if the API button is visible');
+  async isCancelButtonVisible(): Promise<boolean> {
+    this.logger.info('Checking if the cancel button is visible');
     try {
-      await this.apiButton.waitFor({ state: 'attached' });
-      return await this.apiButton.isVisible();
+      await this.cancelButton.waitFor({ state: 'attached' });
+      return await this.cancelButton.isVisible();
     } catch (error) {
-      this.logger.error('Error when checking API button visibility', error);
+      this.logger.error('Error when checking cancel button visibility', error);
       return false;
     }
   }
 
   /**
-   * Clicks the API button.
+   * Clicks the disconnect button.
    */
-  async clickApiButton(): Promise<void> {
-    this.logger.info('Clicking the API button');
-    await this.apiButton.waitFor({ state: 'attached' });
-    await this.apiButton.click();
+  async clickDeleteButton(): Promise<void> {
+    this.logger.info('Clicking the disconnect button');
+    await this.deleteButton.waitFor({ state: 'attached' });
+    await this.deleteButton.click();
   }
 
   /**
-   * Checks if the Database button is visible.
+   * Checks if the disconnect button is visible.
    * @return {Promise<boolean>}
    */
-  async isDataBaseButtonVisible(): Promise<boolean> {
-    this.logger.info('Checking if the Database button is visible');
+  async isDisconnectButtonVisible(): Promise<boolean> {
+    this.logger.info('Checking if the disconnect button is visible');
     try {
-      await this.dataBaseButton.waitFor({ state: 'attached' });
-      return await this.dataBaseButton.isVisible();
+      await this.deleteButton.waitFor({ state: 'attached' });
+      return await this.deleteButton.isVisible();
     } catch (error) {
-      this.logger.error('Error when checking Database button visibility', error);
+      this.logger.error('Error when checking disconnect button visibility', error);
       return false;
     }
-  }
-
-  /**
-   * Clicks the Database button.
-   */
-  async clickDataBaseButton(): Promise<void> {
-    this.logger.info('Clicking the Database button');
-    await this.dataBaseButton.waitFor({ state: 'attached' });
-    await this.dataBaseButton.click();
   }
 
 }

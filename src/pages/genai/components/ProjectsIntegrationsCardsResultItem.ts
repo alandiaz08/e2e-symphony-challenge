@@ -11,6 +11,8 @@ export class ProjectsIntegrationsCardsResultItem extends BaseComponent {
   private readonly integrationPicture: Locator;
   private readonly connectButton: Locator
   private readonly learnMoreButton: Locator
+  private readonly logo: Locator;
+  private readonly seeMoreDetails: Locator
 
 
   constructor(page: Page, container: Locator) {
@@ -21,6 +23,7 @@ export class ProjectsIntegrationsCardsResultItem extends BaseComponent {
     this.integrationPicture = this.container.locator('[alt="Whatsapp Logo"]');
     this.connectButton = this.container.locator('div button:nth-child(1)');
     this.learnMoreButton = this.container.locator('div button:nth-child(2)');
+    this.seeMoreDetails = this.container.getByRole('button', { name: 'Ver detalles' });
   }
 
   /**
@@ -136,4 +139,13 @@ export class ProjectsIntegrationsCardsResultItem extends BaseComponent {
     await this.learnMoreButton.click();
   }
 
+  /**
+   * Clicks the see more details button.
+   */
+  async clickSeeMoreDetailsButton(): Promise<void> {
+    this.logger.info('Clicking the learn more button');
+    await this.page.waitForTimeout(1000);
+    await this.seeMoreDetails.waitFor({ state: 'attached' });
+    await this.seeMoreDetails.click();
+  }  
 }
