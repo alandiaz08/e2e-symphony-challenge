@@ -14,7 +14,7 @@ export class ProjectsFiles extends BaseComponent {
     super(page);
     this.container = container;
     this.uploadFileButton = this.container.locator('[data-testid="upload-file-button"]');
-    this.uploadFilePopupContainer = this.container.locator('[role="dialog"]');
+    this.uploadFilePopupContainer = this.page.locator('[role="dialog"]');
   }
 
   /**

@@ -15,10 +15,10 @@ export class SelectTypeOfIntegrationModal extends BaseComponent {
   constructor(page: Page, container: Locator) {
     super(page);
     this.container = container;
-    this.title = this.container.locator('');
-    this.description = this.container.locator('');
-    this.apiButton = this.container.locator('');
-    this.dataBaseButton = this.container.locator('');
+    this.title = this.container.locator('h2 div');
+    this.description = this.container.locator('p');
+    this.apiButton = this.container.locator('[src="/assets/integrations/api-short.png"]');
+    this.dataBaseButton = this.container.locator('[src="/assets/integrations/db-short.png"]');
   }
 
   /**

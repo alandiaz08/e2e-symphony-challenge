@@ -19,7 +19,7 @@ test.describe('Login Tests @full-regression @login', () => {
       .then(() => login.signUpNow())
 
     const project = new ProjectPage(page);
-    
+
     //Assert
     await expect(await project.isTitleVisible()).toBe(true);
   });
@@ -31,12 +31,12 @@ test.describe('Login Tests @full-regression @login', () => {
 
     //Act
     await login.navigateToLoginPage();
-    
+
     //Assert
     await expect(await login.isWelcomeMessageVisible()).toBe(true);
   });
 
-  test.skip('Is Required email message displayed', async ({ page }, testInfo) => {
+  test('Is Required email message displayed', async ({ page }, testInfo) => {
     //Arrange
     const user = userSelector.getUserByDescription('qasuperuser');
     const login = new LoginPage(page);
@@ -44,16 +44,14 @@ test.describe('Login Tests @full-regression @login', () => {
     //Act
     await login.navigateToLoginPage();
 
-    await login.inputPassword(user.password)
-      .then(() => login.signUpNow())
+    await login.clickEmailInput()
+      .then(() => login.inputPassword(user.password));
 
-    const project = new ProjectPage(page);
-    
     //Assert
     await expect(await login.isEmailRequiredMessageVisible()).toBe(true);
   });
 
-  test.skip('Is Required password message displayed', async ({ page }, testInfo) => {
+  test('Is Required password message displayed', async ({ page }, testInfo) => {
     //Arrange
     const user = userSelector.getUserByDescription('qasuperuser');
     const login = new LoginPage(page);
@@ -61,29 +59,11 @@ test.describe('Login Tests @full-regression @login', () => {
     //Act
     await login.navigateToLoginPage();
 
-    await login.inputUserName(user.email)
-      .then(() => login.signUpNow())
+    await login.clickPasswordInput()
+      .then(() => login.inputUserName(user.email));
 
-    const project = new ProjectPage(page);
-    
     //Assert
     await expect(await login.isPasswordRequiredMessageVisible()).toBe(true);
   });
 
-  test.skip('Is Keep me signed in displayed', async ({ page }, testInfo) => {
-    //Arrange
-    const user = userSelector.getUserByDescription('qasuperuser');
-    const login = new LoginPage(page);
-
-    //Act
-    await login.navigateToLoginPage();
-
-    await login.inputPassword(user.password)
-      .then(() => login.signUpNow())
-
-    const project = new ProjectPage(page);
-    
-    //Assert
-    await expect(await login.isKeepMeSignedCheckboxVisible()).toBe(true);
-  });  
 });

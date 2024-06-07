@@ -19,7 +19,7 @@ export class ProjectPage extends basePage {
    */
   constructor(page: Page) {
     super(page);
-    this.projectTitle = page.locator('div > h1');
+    this.projectTitle = page.locator('[data-testid="page-title"] > div:nth-child(1)');
     this.newProjectButton = this.page.locator('[data-testid="info-card-header"]');
     this.yourProjectButton = this.page.locator('[id="simple-tab-0"]');
     this.allProjectButton = this.page.locator('[id="simple-tab-1"]');

@@ -13,8 +13,8 @@ export class ProjectsConfig extends BaseComponent {
   constructor(page: Page, container: Locator) {
     super(page);
     this.container = container;
-    this.configListContainer = this.container.locator('[data-testid="project-overview"]').nth(0);
-    this.editContainer = this.container.locator('[role="dialog"]');
+    this.configListContainer = this.container.locator('[data-testid="project-overview"]');
+    this.editContainer = this.page.locator('[aria-labelledby="form-dialog-title"]');
   }
 
   /**

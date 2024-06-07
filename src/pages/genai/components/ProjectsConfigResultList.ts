@@ -16,7 +16,7 @@ export class ProjectsConfigResultList extends BaseComponent {
   constructor(page: Page, container: Locator) {
     super(page);
     this.container = container;
-    this.projectsConfigItems = this.container.locator('[data-testid="info-card"]');
+    this.projectsConfigItems = this.container.locator('[data-testid="edit-prompt-card"]');
   }
 
   async getConfigCardItems(): Promise<Locator[]> {

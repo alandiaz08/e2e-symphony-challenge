@@ -7,7 +7,7 @@ import { Locator, Page } from "@playwright/test";
 export class ProjectsConfigResultItem extends BaseComponent {
   private container;
   private readonly configTitle: Locator;
-  private readonly configtDescription: Locator;
+  private readonly configDescription: Locator;
   private readonly configPicture: Locator;
   private readonly configValue: Locator;
   private readonly editButton: Locator
@@ -17,7 +17,7 @@ export class ProjectsConfigResultItem extends BaseComponent {
     super(page);
     this.container = container;
     this.configTitle = this.container.locator('h3');
-    this.configtDescription = this.container.locator('small');
+    this.configDescription = this.container.locator('small');
     this.configPicture = this.container.locator('div > img');
     this.configValue = this.container.locator('div + p');
     this.editButton = this.container.locator('[data-testid="edit-modal-button"]');
