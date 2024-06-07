@@ -9,7 +9,7 @@ import { ProjectsIntegrations } from '../src/pages/genai/components/ProjectsInte
 import { ProjectsIntegrationsCardsResultList } from '../src/pages/genai/components/ProjectsIntegrationsCardsResultList';
 import { ProjectsIntegrationsCardsResultItem } from '../src/pages/genai/components/ProjectsIntegrationsCardsResultItem';
 import { SelectTypeOfIntegrationModal } from '../src/pages/genai/components/SelectTypeOfIntegrationModal';
-import { CustomApiConnectModal } from '../src/pages/genai/components/customApiConnectModal';
+import { CustomApiConnectModal } from '../src/pages/genai/components/CustomApiConnectModal';
 import { ApiConnectionPage } from '../src/pages/genai/pages/ApiConnectionPage';
 import * as assert from "assert";
 import { DeleteApiPopup } from '../src/pages/genai/components/DeleteApiPopup';

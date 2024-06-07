@@ -9,7 +9,7 @@ import * as assert from "assert";
 import { ProjectsConfig } from '../src/pages/genai/components/ProjectsConfig';
 import { ProjectsConfigResultList } from '../src/pages/genai/components/ProjectsConfigResultList';
 import { ProjectsConfigResultItem } from '../src/pages/genai/components/ProjectsConfigResultItem';
-import { EditConfigPopup } from '../src/pages/genai/components/editConfigPopup';
+import { EditConfigPopup } from '../src/pages/genai/components/EditConfigPopup';
 
 const userSelector = new testUsersSelector();
 
