@@ -29,8 +29,8 @@ export class LoginPage extends basePage {
     this.forgotPasswordButton = page.locator('div > a');
     this.keepMeSignedCheckbox = page.locator('[name="remember"]');
     this.welcomeMessage = page.locator('div > h1');
-    this.emailRequiredMessage = page.locator('[id="email-helper-text"]');
-    this.passwordRequiredMessage = page.locator('[id="password-helper-text"]');
+    this.emailRequiredMessage = page.locator('div + p');
+    this.passwordRequiredMessage = page.locator('div + p');
   }
 
   /**
@@ -188,6 +188,24 @@ export class LoginPage extends basePage {
       console.error('Error when checking for "Keep Me Signed In" checkbox visibility:', error); // Consider replacing with your logger if available
       return false;
     }
+  }
+
+  /**
+   * Clicks the email input field.
+   */
+  async clickEmailInput(): Promise<void> {
+    this.logger.info('Clicking the email input field');
+    await this.emailInput.waitFor({ state: 'attached' });
+    await this.emailInput.click();
+  }
+
+  /**
+  * Clicks the password input field.
+  */
+  async clickPasswordInput(): Promise<void> {
+    this.logger.info('Clicking the password input field');
+    await this.passwordInput.waitFor({ state: 'attached' });
+    await this.passwordInput.click();
   }
 
 }

@@ -11,6 +11,7 @@ const userSelector = new testUsersSelector();
 
 test.describe('Metrics Tests @full-regression @metrics', () => {
   test('Has graphic iteration', async ({ page }, testInfo) => {
+    test.slow()
     //Arrange
     const user = userSelector.getUserByDescription('qasuperuser');
     const login = new LoginPage(page);
@@ -25,18 +26,20 @@ test.describe('Metrics Tests @full-regression @metrics', () => {
 
     const project = new ProjectPage(page);
     const projectList = new ProjectsResultList(page, await project.getProjectsListContainer());
-    const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(0));
+    const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));
 
     await projectItem.clickProjectPicture();
 
     await projectBuilder.clickMetricsButton();
     const metrics = new ProjectsMetrics(page, await projectBuilder.getMetricsContainer());
+    await metrics.selectLastYearFromTimeFilter();
 
     //Assert
     await expect(await metrics.isInteractionsGraphVisible()).toBe(true);
   });
 
-  test('Has answer quality graphic', async ({ page }, testInfo) => {
+  test('Has average quality graphic', async ({ page }, testInfo) => {
+    test.slow()
     //Arrange
     const user = userSelector.getUserByDescription('qasuperuser');
     const login = new LoginPage(page);
@@ -57,12 +60,14 @@ test.describe('Metrics Tests @full-regression @metrics', () => {
 
     await projectBuilder.clickMetricsButton();
     const metrics = new ProjectsMetrics(page, await projectBuilder.getMetricsContainer());
+    await metrics.selectLastYearFromTimeFilter();
 
     //Assert
-    await expect(await metrics.isLowQualityAnswersGraphVisible()).toBe(true);
+    await expect(await metrics.isAverageQualityGraphVisible()).toBe(true);
   });
 
-  test('Has topics search graphic', async ({ page }, testInfo) => {
+  test('Has quality per question graphic', async ({ page }, testInfo) => {
+    test.slow()
     //Arrange
     const user = userSelector.getUserByDescription('qasuperuser');
     const login = new LoginPage(page);
@@ -83,12 +88,14 @@ test.describe('Metrics Tests @full-regression @metrics', () => {
 
     await projectBuilder.clickMetricsButton();
     const metrics = new ProjectsMetrics(page, await projectBuilder.getMetricsContainer());
+    await metrics.selectLastYearFromTimeFilter();
 
     //Assert
-    await expect(await metrics.isTopicsSearchGraphVisible()).toBe(true);
+    await expect(await metrics.isQualityPerQuestionGaphVisible()).toBe(true);
   });
 
-  test('Has Low Quality Answers graphic', async ({ page }, testInfo) => {
+  test('Has trending topic graphic', async ({ page }, testInfo) => {
+    test.slow()
     //Arrange
     const user = userSelector.getUserByDescription('qasuperuser');
     const login = new LoginPage(page);
@@ -109,8 +116,8 @@ test.describe('Metrics Tests @full-regression @metrics', () => {
 
     await projectBuilder.clickMetricsButton();
     const metrics = new ProjectsMetrics(page, await projectBuilder.getMetricsContainer());
-
+    await metrics.selectLastYearFromTimeFilter();
     //Assert
-    await expect(await metrics.isLowQualityAnswersGraphVisible()).toBe(true);
+    await expect(await metrics.isTrendingTopicGraphVisible()).toBe(true);
   });
 });

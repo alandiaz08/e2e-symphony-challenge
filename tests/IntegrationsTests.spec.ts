@@ -16,8 +16,9 @@ import { DeleteApiPopup } from '../src/pages/genai/components/DeleteApiPopup';
 
 const userSelector = new testUsersSelector();
 
-test.describe('Integrations Tests @full-regression @metrics', () => {
+test.describe('Integrations Tests @full-regression @integrations', () => {
   test('Has Whatsapp integration card Logo', async ({ page }, testInfo) => {
+    test.slow()
     //Arrange
     const user = userSelector.getUserByDescription('qasuperuser');
     const login = new LoginPage(page);
@@ -46,6 +47,7 @@ test.describe('Integrations Tests @full-regression @metrics', () => {
   });
 
   test('Has Whatsapp integration card title and phone number', async ({ page }, testInfo) => {
+    test.slow()
     //Arrange
     const user = userSelector.getUserByDescription('qasuperuser');
     const login = new LoginPage(page);
@@ -74,6 +76,7 @@ test.describe('Integrations Tests @full-regression @metrics', () => {
   });
 
   test('Has Whatsapp integration card description', async ({ page }, testInfo) => {
+    test.slow()
     //Arrange
     const user = userSelector.getUserByDescription('qasuperuser');
     const login = new LoginPage(page);
@@ -102,6 +105,7 @@ test.describe('Integrations Tests @full-regression @metrics', () => {
   });
 
   test('Has Whatsapp integration card connect button', async ({ page }, testInfo) => {
+    test.slow()
     //Arrange
     const user = userSelector.getUserByDescription('qasuperuser');
     const login = new LoginPage(page);
@@ -130,6 +134,7 @@ test.describe('Integrations Tests @full-regression @metrics', () => {
   });
 
   test('Has Whatsapp integration card learn more button', async ({ page }, testInfo) => {
+    test.slow()
     //Arrange
     const user = userSelector.getUserByDescription('qasuperuser');
     const login = new LoginPage(page);
@@ -158,6 +163,7 @@ test.describe('Integrations Tests @full-regression @metrics', () => {
   });
 
   test('Has Genesys Cloud integration card Logo', async ({ page }, testInfo) => {
+    test.slow()
     //Arrange
     const user = userSelector.getUserByDescription('qasuperuser');
     const login = new LoginPage(page);
@@ -186,6 +192,7 @@ test.describe('Integrations Tests @full-regression @metrics', () => {
   });
 
   test('Has Genesys Cloud integration card title and phone number', async ({ page }, testInfo) => {
+    test.slow()
     //Arrange
     const user = userSelector.getUserByDescription('qasuperuser');
     const login = new LoginPage(page);
@@ -214,6 +221,7 @@ test.describe('Integrations Tests @full-regression @metrics', () => {
   });
 
   test('Has Genesys Cloud integration card description', async ({ page }, testInfo) => {
+    test.slow()
     //Arrange
     const user = userSelector.getUserByDescription('qasuperuser');
     const login = new LoginPage(page);
@@ -242,6 +250,7 @@ test.describe('Integrations Tests @full-regression @metrics', () => {
   });
 
   test('Has Genesys Cloud integration card connect button', async ({ page }, testInfo) => {
+    test.slow()
     //Arrange
     const user = userSelector.getUserByDescription('qasuperuser');
     const login = new LoginPage(page);
@@ -270,6 +279,7 @@ test.describe('Integrations Tests @full-regression @metrics', () => {
   });
 
   test('Has Genesys Cloud integration card learn more button', async ({ page }, testInfo) => {
+    test.slow()
     //Arrange
     const user = userSelector.getUserByDescription('qasuperuser');
     const login = new LoginPage(page);
@@ -297,7 +307,8 @@ test.describe('Integrations Tests @full-regression @metrics', () => {
     await expect(await integrationsItem.isLearnMoreButtonVisible()).toBe(true);
   });
 
-  test.only('Create an API and Delete it', async ({ page }, testInfo) => {
+  test('Create an API and Delete it', async ({ page }, testInfo) => {
+    test.slow()
     //Arrange
     const user = userSelector.getUserByDescription('qasuperuser');
     const login = new LoginPage(page);
@@ -324,7 +335,7 @@ test.describe('Integrations Tests @full-regression @metrics', () => {
     await projectBuilder.clickIntegrationsButton();
     const integrations = new ProjectsIntegrations(page, await projectBuilder.getIntegrationsContainer());
     const integrationsList = new ProjectsIntegrationsCardsResultList(page, await integrations.getIntegrationCardListContainer());
-    
+
     //In the case that we current have a API, we will delete it and create a new one
     if (await integrationsList.isIntegrationCardPresentByTitle(nameValue)) {
       const integrationsItem = new ProjectsIntegrationsCardsResultItem(page, await integrationsList.getIntegrationCardByTitle(nameValue));
@@ -370,5 +381,47 @@ test.describe('Integrations Tests @full-regression @metrics', () => {
 
     //Assert
     await expect(await project.isTitleVisible()).toBe(true);
+  });
+
+  test.skip('Create a Data Base and Delete it', async ({ page }, testInfo) => {
+    //Arrange
+    const user = userSelector.getUserByDescription('qasuperuser');
+    const login = new LoginPage(page);
+    const projectBuilder = new ProjectBuilderPage(page);
+    const apiConnection = new ApiConnectionPage(page);
+    const project = new ProjectPage(page);
+    const dataType = 'My SQL';
+    const hostAddressValue = 'localhost';
+    const port = "25565";
+    const dataBaseName = 'database_demo';
+    const userName = 'root';
+    const password = 'chatbuilder2024';
+
+    //Act
+    await login.navigateToLoginPage();
+
+    await login.inputUserName(user.email)
+      .then(() => login.inputPassword(user.password))
+      .then(() => login.signUpNow())
+
+    const projectList = new ProjectsResultList(page, await project.getProjectsListContainer());
+    const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));
+
+    await projectItem.clickProjectPicture();
+
+    await projectBuilder.clickIntegrationsButton();
+    const integrations = new ProjectsIntegrations(page, await projectBuilder.getIntegrationsContainer());
+    const integrationsList = new ProjectsIntegrationsCardsResultList(page, await integrations.getIntegrationCardListContainer());
+
+    //In the case that we current have a API, we will delete it and create a new one
+    if (await integrationsList.isIntegrationCardPresentByTitle(userName)) {
+      const integrationsItem = new ProjectsIntegrationsCardsResultItem(page, await integrationsList.getIntegrationCardByTitle(nameValue));
+      await integrationsItem.clickSeeMoreDetailsButton()
+        .then(() => apiConnection.clickActionAndDelete())
+        .then(() => apiConnection.getDeleteApiPopupContainerContainer());
+      const deleteApiPopup = new DeleteApiPopup(page, await apiConnection.getDeleteApiPopupContainerContainer());
+      await deleteApiPopup.clickDeleteButton();
+      await projectBuilder.clickIntegrationsButton();
+    }
   });
 });

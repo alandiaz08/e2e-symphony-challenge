@@ -7,9 +7,9 @@ import { Locator, Page } from "@playwright/test";
 export class ProjectsMetrics extends BaseComponent {
   private container;
   private readonly interactionsGraph: Locator;
-  private readonly qualityGraph: Locator;
-  private readonly topicsSearchGraph: Locator;
-  private readonly lowQualityAnsersGraph: Locator;
+  private readonly averageQualityGraph: Locator;
+  private readonly qualityPerQuestionGraph: Locator;
+  private readonly trendingTopicGraph: Locator;
   private readonly timeFilter: Locator;
   private readonly timeFilterLastYear: Locator;
 
@@ -18,9 +18,9 @@ export class ProjectsMetrics extends BaseComponent {
     super(page);
     this.container = container;
     this.interactionsGraph = this.container.locator('canvas').first();
-    this.qualityGraph = this.container.getByTestId('velocity-chart').locator('canvas');
-    this.topicsSearchGraph = this.container.getByTestId('bar-horizontal-chart').locator('canvas');
-    this.lowQualityAnsersGraph = this.container.getByTestId('low-quality-chart').locator('canvas');
+    this.averageQualityGraph = this.container.locator('[data-testid="velocity-chart"]');
+    this.qualityPerQuestionGraph = this.container.locator('[data-testid="low-quality-chart"]');
+    this.trendingTopicGraph = this.container.locator('[data-testid="metric-card"] > div + [data-testid="frecuent-word-chart"]');
     this.timeFilter = this.container.locator('[data-testid="dropdown-button"]');
     this.timeFilterLastYear = this.page.getByRole('menuitem', { name: 'Último año' });
   }
@@ -41,46 +41,46 @@ export class ProjectsMetrics extends BaseComponent {
   }
 
   /**
-   * Checks if the quality graph is visible.
+   * Checks if the average Quality graph is visible.
    * @return {Promise<boolean>}
    */
-  async isQualityGraphVisible(): Promise<boolean> {
-    this.logger.info('Checking if the quality graph is visible');
+  async isAverageQualityGraphVisible(): Promise<boolean> {
+    this.logger.info('Checking if the average Quality graph is visible');
     try {
-      await this.qualityGraph.waitFor({ state: 'attached' });
-      return await this.qualityGraph.isVisible();
+      await this.averageQualityGraph.waitFor({ state: 'attached' });
+      return await this.averageQualityGraph.isVisible();
     } catch (error) {
-      this.logger.error('Error checking quality graph visibility:', error);
+      this.logger.error('Error checking average Quality graph visibility:', error);
       return false;
     }
   }
 
   /**
-   * Checks if the topics search graph is visible.
+   * Checks if the quality Per Question graph is visible.
    * @return {Promise<boolean>}
    */
-  async isTopicsSearchGraphVisible(): Promise<boolean> {
+  async isQualityPerQuestionGaphVisible(): Promise<boolean> {
     this.logger.info('Checking if the topics search graph is visible');
     try {
-      await this.topicsSearchGraph.waitFor({ state: 'attached' });
-      return await this.topicsSearchGraph.isVisible();
+      await this.qualityPerQuestionGraph.waitFor({ state: 'attached' });
+      return await this.qualityPerQuestionGraph.isVisible();
     } catch (error) {
-      this.logger.error('Error checking topics search graph visibility:', error);
+      this.logger.error('Error checking quality Per question graph visibility:', error);
       return false;
     }
   }
 
   /**
-   * Checks if the low quality answers graph is visible.
+   * Checks if the trending topic graph is visible.
    * @return {Promise<boolean>}
    */
-  async isLowQualityAnswersGraphVisible(): Promise<boolean> {
-    this.logger.info('Checking if the low quality answers graph is visible');
+  async isTrendingTopicGraphVisible(): Promise<boolean> {
+    this.logger.info('Checking if the trending topic graph is visible');
     try {
-      await this.lowQualityAnsersGraph.waitFor({ state: 'attached' });
-      return await this.lowQualityAnsersGraph.isVisible();
+      await this.trendingTopicGraph.waitFor({ state: 'attached' });
+      return await this.trendingTopicGraph.isVisible();
     } catch (error) {
-      this.logger.error('Error checking low quality answers graph visibility:', error);
+      this.logger.error('Error checking trending topic answers graph visibility:', error);
       return false;
     }
   }

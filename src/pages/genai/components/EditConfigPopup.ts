@@ -18,7 +18,7 @@ export class EditConfigPopup extends BaseComponent {
     this.container = container;
     this.title = this.container.locator('[class="font-bold"]');
     this.question = this.container.locator('[class="font-bold"] + div');
-    this.editField = this.container.locator('[id=":rq:"]');
+    this.editField = this.container.locator('div > textarea:nth-child(1)');
     this.cancelButton = this.container.locator('[data-testid="edit-modal-cancel-button"]');
     this.saveButton = this.container.locator('[data-testid="edit-modal-save-button"]');
   }
@@ -80,7 +80,8 @@ export class EditConfigPopup extends BaseComponent {
   async enterEditText(text: string): Promise<void> {
     this.logger.info('Entering text into the edit field');
     await this.editField.waitFor({ state: 'attached' });
-    await this.editField.fill(text);
+    await this.editField.clear();
+    await this.editField.type(text);
   }
 
   /**
@@ -89,6 +90,7 @@ export class EditConfigPopup extends BaseComponent {
   async clickCancelButton(): Promise<void> {
     this.logger.info('Clicking the cancel button');
     await this.cancelButton.waitFor({ state: 'attached' });
+    await this.cancelButton.clear();
     await this.cancelButton.click();
   }
 

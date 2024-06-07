@@ -3,9 +3,9 @@ import { Locator, Page } from "@playwright/test";
 import * as path from "path";
 
 /**
- * Class for ProjectsFiles
+ * Class for ProjectsFileUpdateFilePopup
  */
-export class ProjectsFiles extends BaseComponent {
+export class ProjectsFileUpdateFilePopup extends BaseComponent {
   private container;
   private readonly uploadFileButton: Locator;
   private readonly selectFileButton: Locator;

@@ -12,6 +12,7 @@ const userSelector = new testUsersSelector();
 
 test.describe('Preview Tests @full-regression @preview', () => {
   test('Happy Path chat with IA', async ({ page }, testInfo) => {
+    test.slow()
     //Arrange
     const user = userSelector.getUserByDescription('qasuperuser');
     const login = new LoginPage(page);
