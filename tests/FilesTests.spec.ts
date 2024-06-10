@@ -14,7 +14,7 @@ import * as assert from "assert";
 const userSelector = new testUsersSelector();
 
 test.describe('Files Tests @full-regression @files', () => {
-  test.only('Upload a file successfully', async ({ page }, testInfo) => {
+  test('Upload a file successfully', async ({ page }, testInfo) => {
     test.slow()
     //Arrange
     const user = userSelector.getUserByDescription('qasuperuser');
