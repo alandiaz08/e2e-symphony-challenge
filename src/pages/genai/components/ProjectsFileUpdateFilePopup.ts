@@ -15,8 +15,8 @@ export class ProjectsFileUpdateFilePopup extends BaseComponent {
   constructor(page: Page, container: Locator) {
     super(page);
     this.container = container;
-    this.uploadFileButton = this.container.locator('[data-testid="upload-file-button"]');
-    this.selectFileButton = this.container.locator('[role="dialog"]');
+    this.uploadFileButton = this.container.locator('[data-testid="upload-file-save"]');
+    this.selectFileButton = this.container.locator('[data-testid="contained-button-file"]');
     this.cancelButton = this.container.locator('[role="dialog"]');
   }
 
