@@ -10,8 +10,15 @@ import { ProjectsFileUpdateFilePopup } from '../src/pages/genai/components/Proje
 import { ProjectsFilesResultList } from '../src/pages/genai/components/ProjectsFilesResultList';
 import { ProjectsFilesResultItem } from '../src/pages/genai/components/ProjectsFilesResultItem';
 import * as assert from "assert";
+import { URLBuilder } from '../src/utils/URLBuilder';
 
 const userSelector = new testUsersSelector();
+test.use({ storageState: 'playwright.auth/user.json' });
+
+test.beforeEach(async ({ page }) => {
+  URLBuilder.navigateToProjectPage(page);
+  await page.waitForLoadState('networkidle');
+});
 
 test.describe('Files Tests @full-regression @files', () => {
   test('Upload a file successfully', async ({ page }, testInfo) => {
@@ -24,12 +31,6 @@ test.describe('Files Tests @full-regression @files', () => {
     const fileMessageExpected = 'Agrega contenido y proporciona a tu chat de IA la información necesaria para dar respuestas de calidad.'
 
     //Act
-    await login.navigateToLoginPage();
-
-    await login.inputUserName(user.email)
-      .then(() => login.inputPassword(user.password))
-      .then(() => login.signUpNow())
-
     const project = new ProjectPage(page);
     const projectList = new ProjectsResultList(page, await project.getProjectsListContainer());
     const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));

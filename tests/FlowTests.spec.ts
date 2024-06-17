@@ -7,25 +7,23 @@ import { ProjectsResultItem } from '../src/pages/genai/components/ProjectsResult
 import { ProjectBuilderPage } from '../src/pages/genai/pages/ProjectBuilderPage';
 import * as assert from "assert";
 import { ProjectsFlows } from '../src/pages/genai/components/ProjectsFlows';
+import { URLBuilder } from '../src/utils/URLBuilder';
 
 const userSelector = new testUsersSelector();
+
+test.beforeEach(async ({ page }) => {
+  URLBuilder.navigateToProjectPage(page);
+  await page.waitForLoadState('networkidle');
+});
 
 test.describe('Flows Tests @full-regression @flows', () => {
   test('Check if the flow is no empty', async ({ page }, testInfo) => {
     test.slow()
     //Arrange
-    const user = userSelector.getUserByDescription('qasuperuser');
-    const login = new LoginPage(page);
     const projectBuilder = new ProjectBuilderPage(page);
     const promptValue = 'Quiero que adopte el rol de QA'
 
     //Act
-    await login.navigateToLoginPage();
-
-    await login.inputUserName(user.email)
-      .then(() => login.inputPassword(user.password))
-      .then(() => login.signUpNow())
-
     const project = new ProjectPage(page);
     const projectList = new ProjectsResultList(page, await project.getProjectsListContainer());
     const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));

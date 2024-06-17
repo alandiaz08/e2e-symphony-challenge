@@ -13,24 +13,22 @@ import { CustomApiConnectModal } from '../src/pages/genai/components/CustomApiCo
 import { ApiConnectionPage } from '../src/pages/genai/pages/ApiConnectionPage';
 import * as assert from "assert";
 import { DeleteApiPopup } from '../src/pages/genai/components/DeleteApiPopup';
+import { URLBuilder } from '../src/utils/URLBuilder';
 
 const userSelector = new testUsersSelector();
+
+test.beforeEach(async ({ page }) => {
+  URLBuilder.navigateToProjectPage(page);
+  await page.waitForLoadState('networkidle');
+});
 
 test.describe('Integrations Tests @full-regression @integrations', () => {
   test('Has Whatsapp integration card Logo', async ({ page }, testInfo) => {
     test.slow()
     //Arrange
-    const user = userSelector.getUserByDescription('qasuperuser');
-    const login = new LoginPage(page);
     const projectBuilder = new ProjectBuilderPage(page);
 
     //Act
-    await login.navigateToLoginPage();
-
-    await login.inputUserName(user.email)
-      .then(() => login.inputPassword(user.password))
-      .then(() => login.signUpNow())
-
     const project = new ProjectPage(page);
     const projectList = new ProjectsResultList(page, await project.getProjectsListContainer());
     const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));
@@ -49,17 +47,9 @@ test.describe('Integrations Tests @full-regression @integrations', () => {
   test('Has Whatsapp integration card title and phone number', async ({ page }, testInfo) => {
     test.slow()
     //Arrange
-    const user = userSelector.getUserByDescription('qasuperuser');
-    const login = new LoginPage(page);
     const projectBuilder = new ProjectBuilderPage(page);
 
     //Act
-    await login.navigateToLoginPage();
-
-    await login.inputUserName(user.email)
-      .then(() => login.inputPassword(user.password))
-      .then(() => login.signUpNow())
-
     const project = new ProjectPage(page);
     const projectList = new ProjectsResultList(page, await project.getProjectsListContainer());
     const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));
@@ -78,17 +68,9 @@ test.describe('Integrations Tests @full-regression @integrations', () => {
   test('Has Whatsapp integration card description', async ({ page }, testInfo) => {
     test.slow()
     //Arrange
-    const user = userSelector.getUserByDescription('qasuperuser');
-    const login = new LoginPage(page);
     const projectBuilder = new ProjectBuilderPage(page);
 
     //Act
-    await login.navigateToLoginPage();
-
-    await login.inputUserName(user.email)
-      .then(() => login.inputPassword(user.password))
-      .then(() => login.signUpNow())
-
     const project = new ProjectPage(page);
     const projectList = new ProjectsResultList(page, await project.getProjectsListContainer());
     const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));
@@ -107,17 +89,9 @@ test.describe('Integrations Tests @full-regression @integrations', () => {
   test('Has Whatsapp integration card connect button', async ({ page }, testInfo) => {
     test.slow()
     //Arrange
-    const user = userSelector.getUserByDescription('qasuperuser');
-    const login = new LoginPage(page);
     const projectBuilder = new ProjectBuilderPage(page);
 
     //Act
-    await login.navigateToLoginPage();
-
-    await login.inputUserName(user.email)
-      .then(() => login.inputPassword(user.password))
-      .then(() => login.signUpNow())
-
     const project = new ProjectPage(page);
     const projectList = new ProjectsResultList(page, await project.getProjectsListContainer());
     const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));
@@ -136,17 +110,9 @@ test.describe('Integrations Tests @full-regression @integrations', () => {
   test('Has Whatsapp integration card learn more button', async ({ page }, testInfo) => {
     test.slow()
     //Arrange
-    const user = userSelector.getUserByDescription('qasuperuser');
-    const login = new LoginPage(page);
     const projectBuilder = new ProjectBuilderPage(page);
 
     //Act
-    await login.navigateToLoginPage();
-
-    await login.inputUserName(user.email)
-      .then(() => login.inputPassword(user.password))
-      .then(() => login.signUpNow())
-
     const project = new ProjectPage(page);
     const projectList = new ProjectsResultList(page, await project.getProjectsListContainer());
     const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));
@@ -165,17 +131,9 @@ test.describe('Integrations Tests @full-regression @integrations', () => {
   test('Has Genesys Cloud integration card Logo', async ({ page }, testInfo) => {
     test.slow()
     //Arrange
-    const user = userSelector.getUserByDescription('qasuperuser');
-    const login = new LoginPage(page);
     const projectBuilder = new ProjectBuilderPage(page);
 
     //Act
-    await login.navigateToLoginPage();
-
-    await login.inputUserName(user.email)
-      .then(() => login.inputPassword(user.password))
-      .then(() => login.signUpNow())
-
     const project = new ProjectPage(page);
     const projectList = new ProjectsResultList(page, await project.getProjectsListContainer());
     const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));
@@ -194,17 +152,9 @@ test.describe('Integrations Tests @full-regression @integrations', () => {
   test('Has Genesys Cloud integration card title and phone number', async ({ page }, testInfo) => {
     test.slow()
     //Arrange
-    const user = userSelector.getUserByDescription('qasuperuser');
-    const login = new LoginPage(page);
     const projectBuilder = new ProjectBuilderPage(page);
 
     //Act
-    await login.navigateToLoginPage();
-
-    await login.inputUserName(user.email)
-      .then(() => login.inputPassword(user.password))
-      .then(() => login.signUpNow())
-
     const project = new ProjectPage(page);
     const projectList = new ProjectsResultList(page, await project.getProjectsListContainer());
     const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));
@@ -223,17 +173,9 @@ test.describe('Integrations Tests @full-regression @integrations', () => {
   test('Has Genesys Cloud integration card description', async ({ page }, testInfo) => {
     test.slow()
     //Arrange
-    const user = userSelector.getUserByDescription('qasuperuser');
-    const login = new LoginPage(page);
     const projectBuilder = new ProjectBuilderPage(page);
 
     //Act
-    await login.navigateToLoginPage();
-
-    await login.inputUserName(user.email)
-      .then(() => login.inputPassword(user.password))
-      .then(() => login.signUpNow())
-
     const project = new ProjectPage(page);
     const projectList = new ProjectsResultList(page, await project.getProjectsListContainer());
     const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));
@@ -252,17 +194,9 @@ test.describe('Integrations Tests @full-regression @integrations', () => {
   test('Has Genesys Cloud integration card connect button', async ({ page }, testInfo) => {
     test.slow()
     //Arrange
-    const user = userSelector.getUserByDescription('qasuperuser');
-    const login = new LoginPage(page);
     const projectBuilder = new ProjectBuilderPage(page);
 
     //Act
-    await login.navigateToLoginPage();
-
-    await login.inputUserName(user.email)
-      .then(() => login.inputPassword(user.password))
-      .then(() => login.signUpNow())
-
     const project = new ProjectPage(page);
     const projectList = new ProjectsResultList(page, await project.getProjectsListContainer());
     const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));
@@ -281,17 +215,9 @@ test.describe('Integrations Tests @full-regression @integrations', () => {
   test('Has Genesys Cloud integration card learn more button', async ({ page }, testInfo) => {
     test.slow()
     //Arrange
-    const user = userSelector.getUserByDescription('qasuperuser');
-    const login = new LoginPage(page);
     const projectBuilder = new ProjectBuilderPage(page);
 
     //Act
-    await login.navigateToLoginPage();
-
-    await login.inputUserName(user.email)
-      .then(() => login.inputPassword(user.password))
-      .then(() => login.signUpNow())
-
     const project = new ProjectPage(page);
     const projectList = new ProjectsResultList(page, await project.getProjectsListContainer());
     const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));
@@ -310,8 +236,6 @@ test.describe('Integrations Tests @full-regression @integrations', () => {
   test('Create an API and Delete it', async ({ page }, testInfo) => {
     test.slow()
     //Arrange
-    const user = userSelector.getUserByDescription('qasuperuser');
-    const login = new LoginPage(page);
     const projectBuilder = new ProjectBuilderPage(page);
     const apiConnection = new ApiConnectionPage(page);
     const project = new ProjectPage(page);
@@ -321,12 +245,6 @@ test.describe('Integrations Tests @full-regression @integrations', () => {
     const requestValue = "GET"
 
     //Act
-    await login.navigateToLoginPage();
-
-    await login.inputUserName(user.email)
-      .then(() => login.inputPassword(user.password))
-      .then(() => login.signUpNow())
-
     const projectList = new ProjectsResultList(page, await project.getProjectsListContainer());
     const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));
 
@@ -385,8 +303,6 @@ test.describe('Integrations Tests @full-regression @integrations', () => {
 
   test.skip('Create a Data Base and Delete it', async ({ page }, testInfo) => {
     //Arrange
-    const user = userSelector.getUserByDescription('qasuperuser');
-    const login = new LoginPage(page);
     const projectBuilder = new ProjectBuilderPage(page);
     const apiConnection = new ApiConnectionPage(page);
     const project = new ProjectPage(page);
@@ -398,12 +314,6 @@ test.describe('Integrations Tests @full-regression @integrations', () => {
     const password = 'chatbuilder2024';
 
     //Act
-    await login.navigateToLoginPage();
-
-    await login.inputUserName(user.email)
-      .then(() => login.inputPassword(user.password))
-      .then(() => login.signUpNow())
-
     const projectList = new ProjectsResultList(page, await project.getProjectsListContainer());
     const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));
 

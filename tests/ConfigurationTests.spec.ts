@@ -10,27 +10,25 @@ import { ProjectsConfig } from '../src/pages/genai/components/ProjectsConfig';
 import { ProjectsConfigResultList } from '../src/pages/genai/components/ProjectsConfigResultList';
 import { ProjectsConfigResultItem } from '../src/pages/genai/components/ProjectsConfigResultItem';
 import { EditConfigPopup } from '../src/pages/genai/components/EditConfigPopup';
+import { URLBuilder } from '../src/utils/URLBuilder';
 
 const userSelector = new testUsersSelector();
+
+test.beforeEach(async ({ page }) => {
+  URLBuilder.navigateToProjectPage(page);
+  await page.waitForLoadState('networkidle');
+});
 
 test.describe('Configuration Tests @full-regression @configuration', () => {
   test('Add and check the purpose configuration', async ({ page }, testInfo) => {
     test.slow()
     //Arrange
-    const user = userSelector.getUserByDescription('qasuperuser');
-    const login = new LoginPage(page);
     const projectBuilder = new ProjectBuilderPage(page);
     const purposeExpected = 'Propósito';
     const descriptionExpected = '¿Cuál es la tarea principal de tu chat?';
     const proposeValue = 'El porpósito para el chat es tener un asistente QA';
 
     //Act
-    await login.navigateToLoginPage();
-
-    await login.inputUserName(user.email)
-      .then(() => login.inputPassword(user.password))
-      .then(() => login.signUpNow())
-
     const project = new ProjectPage(page);
     const projectList = new ProjectsResultList(page, await project.getProjectsListContainer());
     const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));

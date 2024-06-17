@@ -13,3 +13,4 @@ logs/
 /allure-report/
 /test-result.json
 .env
+playwright.auth/user.json

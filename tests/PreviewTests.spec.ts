@@ -7,27 +7,25 @@ import { ProjectsResultItem } from '../src/pages/genai/components/ProjectsResult
 import { ProjectBuilderPage } from '../src/pages/genai/pages/ProjectBuilderPage';
 import { ProjectsAiChat } from '../src/pages/genai/components/ProjectsAiChat';
 import { PreviewPage } from '../src/pages/genai/pages/PreviewPage';
+import { URLBuilder } from '../src/utils/URLBuilder';
 
 const userSelector = new testUsersSelector();
+
+test.beforeEach(async ({ page }) => {
+  URLBuilder.navigateToProjectPage(page);
+  await page.waitForLoadState('networkidle');
+});
 
 test.describe('Preview Tests @full-regression @preview', () => {
   test('Happy Path chat with IA', async ({ page }, testInfo) => {
     test.slow()
     //Arrange
-    const user = userSelector.getUserByDescription('qasuperuser');
-    const login = new LoginPage(page);
     const projectBuilder = new ProjectBuilderPage(page);
     const preview = new PreviewPage(page);
     const messageToChat = 'Hola, quiero que tomes el rol de QA automation, como personalidad';
     const messageForPreview = 'Hola, explicame que es una prueba funcional en una oracion corta';
 
     //Act
-    await login.navigateToLoginPage();
-
-    await login.inputUserName(user.email)
-      .then(() => login.inputPassword(user.password))
-      .then(() => login.signUpNow())
-
     const project = new ProjectPage(page);
     const projectList = new ProjectsResultList(page, await project.getProjectsListContainer());
     const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));
