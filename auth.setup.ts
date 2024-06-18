@@ -1,8 +1,6 @@
 import { Browser, chromium } from '@playwright/test';
 import { testUsersSelector } from './src/utils/testUsersSelector';
 import { LoginPage } from './src/pages/genai/pages/LoginPage';
-import { URLBuilder } from './src/utils/URLBuilder';
-import { env } from './load-env';
 
 const authFile = 'playwright.auth/user.json';
 const userSelector = new testUsersSelector();

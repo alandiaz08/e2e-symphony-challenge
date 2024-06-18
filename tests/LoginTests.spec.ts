@@ -5,6 +5,9 @@ import { ProjectPage } from '../src/pages/genai/pages/ProjectsPage';
 
 const userSelector = new testUsersSelector();
 
+//This line delete the cookies to run tests
+test.use({ storageState: { cookies: [], origins: [] } });
+
 test.describe('Login Tests @full-regression @login', () => {
   test('Login by email', async ({ page }, testInfo) => {
     //Arrange

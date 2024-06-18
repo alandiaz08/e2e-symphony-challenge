@@ -1,4 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
+import * as os from "os";
 
 /**
  * Read environment variables from file.
@@ -12,6 +13,22 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   globalSetup: require.resolve('./auth.setup.ts'),
   testDir: './tests',
+  reporter: [
+    ["list"],
+    [
+      "allure-playwright",
+      {
+        detail: true,
+        suiteTitle: false,
+        environmentInfo: {
+          os_platform: os.platform(),
+          os_release: os.release(),
+          os_version: os.version(),
+          node_version: process.version,
+        },
+      },
+    ],
+  ],
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   expect: {
@@ -30,7 +47,7 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.NUMBER_OF_WORKERS ? parseInt(process.env.NUMBER_OF_WORKERS) : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [['allure-playwright']],
+  //reporter: [['allure-playwright']],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
@@ -43,7 +60,7 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
+      name: 'genAi-e2e-tests',
       use: { ...devices['Desktop Chrome'] },
     },
 /*
