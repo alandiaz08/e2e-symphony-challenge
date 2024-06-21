@@ -21,7 +21,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe('Configuration Tests @full-regression @configuration', () => {
-  test.only('Add and check the purpose configuration', async ({ page }, testInfo) => {
+  test('Add and check the purpose configuration', async ({ page }, testInfo) => {
     test.slow()
 
     //Allure report data
