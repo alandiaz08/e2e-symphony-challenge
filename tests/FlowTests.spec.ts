@@ -24,7 +24,7 @@ test.describe('Flows Tests @full-regression @flows', () => {
       "This test attempts to log into the website using a login and a password. And Check if the flow is no empty",
     );
     await allure.owner("Alan Diaz");
-    await allure.tags("full-regression", "files");
+    await allure.tags("full-regression", "flows");
     await allure.link("https://www.notion.so/laureate-mx/Flow-Tests-aa7176f84a384c5f9d52c7354428f250", "Notion Test Case Related");
     
     //Arrange
