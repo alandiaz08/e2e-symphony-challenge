@@ -2,6 +2,7 @@ import { Browser, chromium } from '@playwright/test';
 import { testUsersSelector } from './src/utils/testUsersSelector';
 import { LoginPage } from './src/pages/genai/pages/LoginPage';
 
+
 const authFile = 'playwright.auth/user.json';
 const userSelector = new testUsersSelector();
 const USER = userSelector.getUserByDescription('qasuperuser');

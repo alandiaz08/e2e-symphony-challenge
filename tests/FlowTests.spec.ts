@@ -1,5 +1,4 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../src/pages/genai/pages/LoginPage';
 import { testUsersSelector } from '../src/utils/testUsersSelector';
 import { ProjectPage } from '../src/pages/genai/pages/ProjectsPage';
 import { ProjectsResultList } from '../src/pages/genai/components/ProjectsResultList';
@@ -8,8 +7,8 @@ import { ProjectBuilderPage } from '../src/pages/genai/pages/ProjectBuilderPage'
 import * as assert from "assert";
 import { ProjectsFlows } from '../src/pages/genai/components/ProjectsFlows';
 import { URLBuilder } from '../src/utils/URLBuilder';
+import { allure } from "allure-playwright";
 
-const userSelector = new testUsersSelector();
 
 test.beforeEach(async ({ page }) => {
   URLBuilder.navigateToProjectPage(page);
@@ -19,9 +18,19 @@ test.beforeEach(async ({ page }) => {
 test.describe('Flows Tests @full-regression @flows', () => {
   test('Check if the flow is no empty', async ({ page }, testInfo) => {
     test.slow()
+
+    //Allure report data
+    await allure.description(
+      "This test attempts to log into the website using a login and a password. And Check if the flow is no empty",
+    );
+    await allure.owner("Alan Diaz");
+    await allure.tags("full-regression", "files");
+    await allure.link("https://www.notion.so/laureate-mx/Flow-Tests-aa7176f84a384c5f9d52c7354428f250", "Notion Test Case Related");
+    
     //Arrange
     const projectBuilder = new ProjectBuilderPage(page);
-    const promptValue = 'Quiero que adopte el rol de QA'
+    const promptValue = 'Quiero que adopte el rol de QA';
+    await allure.parameter("Prompt value expected", promptValue);
 
     //Act
     const project = new ProjectPage(page);

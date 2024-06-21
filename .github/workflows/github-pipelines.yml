@@ -22,8 +22,15 @@ on:
         default: '@full-regression'
         type: choice
         options:
+          - '@configuration'
+          - '@files'
+          - '@flows'
           - '@full-regression'
+          - '@integrations'
           - '@login'
+          - '@metrics'
+          - '@preview'
+          - '@register'
       shardCount:
         description: 'Number of shards/workers'
         required: true
