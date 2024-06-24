@@ -1,6 +1,4 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../src/pages/genai/pages/LoginPage';
-import { testUsersSelector } from '../src/utils/testUsersSelector';
 import { ProjectPage } from '../src/pages/genai/pages/ProjectsPage';
 import { ProjectBuilderPage } from '../src/pages/genai/pages/ProjectBuilderPage';
 import { ProjectsResultList } from '../src/pages/genai/components/ProjectsResultList';
@@ -13,24 +11,31 @@ import { CustomApiConnectModal } from '../src/pages/genai/components/CustomApiCo
 import { ApiConnectionPage } from '../src/pages/genai/pages/ApiConnectionPage';
 import * as assert from "assert";
 import { DeleteApiPopup } from '../src/pages/genai/components/DeleteApiPopup';
+import { URLBuilder } from '../src/utils/URLBuilder';
+import { allure } from "allure-playwright";
 
-const userSelector = new testUsersSelector();
+
+test.beforeEach(async ({ page }) => {
+  URLBuilder.navigateToProjectPage(page);
+  await page.waitForLoadState('networkidle');
+});
 
 test.describe('Integrations Tests @full-regression @integrations', () => {
   test('Has Whatsapp integration card Logo', async ({ page }, testInfo) => {
     test.slow()
+
+    //Allure report data
+    await allure.description(
+      "This test attempts to log into the website using a login and a password. And Check if the Whatsapp integration card has the Logo",
+    );
+    await allure.owner("Alan Diaz");
+    await allure.tags("full-regression", "integrations");
+    await allure.link("https://www.notion.so/laureate-mx/Integrations-Tests-0be05db45bc64eeab3e47fd9e8b4f2d2", "Notion Test Case Related");
+
     //Arrange
-    const user = userSelector.getUserByDescription('qasuperuser');
-    const login = new LoginPage(page);
     const projectBuilder = new ProjectBuilderPage(page);
 
     //Act
-    await login.navigateToLoginPage();
-
-    await login.inputUserName(user.email)
-      .then(() => login.inputPassword(user.password))
-      .then(() => login.signUpNow())
-
     const project = new ProjectPage(page);
     const projectList = new ProjectsResultList(page, await project.getProjectsListContainer());
     const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));
@@ -48,18 +53,19 @@ test.describe('Integrations Tests @full-regression @integrations', () => {
 
   test('Has Whatsapp integration card title and phone number', async ({ page }, testInfo) => {
     test.slow()
+
+    //Allure report data
+    await allure.description(
+      "This test attempts to log into the website using a login and a password. And Check if the Whatsapp integration card has title and phone numbero",
+    );
+    await allure.owner("Alan Diaz");
+    await allure.tags("full-regression", "integrations");
+    await allure.link("https://www.notion.so/laureate-mx/Integrations-Tests-0be05db45bc64eeab3e47fd9e8b4f2d2", "Notion Test Case Related");
+
     //Arrange
-    const user = userSelector.getUserByDescription('qasuperuser');
-    const login = new LoginPage(page);
     const projectBuilder = new ProjectBuilderPage(page);
 
     //Act
-    await login.navigateToLoginPage();
-
-    await login.inputUserName(user.email)
-      .then(() => login.inputPassword(user.password))
-      .then(() => login.signUpNow())
-
     const project = new ProjectPage(page);
     const projectList = new ProjectsResultList(page, await project.getProjectsListContainer());
     const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));
@@ -77,18 +83,19 @@ test.describe('Integrations Tests @full-regression @integrations', () => {
 
   test('Has Whatsapp integration card description', async ({ page }, testInfo) => {
     test.slow()
+
+    //Allure report data
+    await allure.description(
+      "This test attempts to log into the website using a login and a password. And Check if the Whatsapp integration card has description",
+    );
+    await allure.owner("Alan Diaz");
+    await allure.tags("full-regression", "integrations");
+    await allure.link("https://www.notion.so/laureate-mx/Integrations-Tests-0be05db45bc64eeab3e47fd9e8b4f2d2", "Notion Test Case Related");
+
     //Arrange
-    const user = userSelector.getUserByDescription('qasuperuser');
-    const login = new LoginPage(page);
     const projectBuilder = new ProjectBuilderPage(page);
 
     //Act
-    await login.navigateToLoginPage();
-
-    await login.inputUserName(user.email)
-      .then(() => login.inputPassword(user.password))
-      .then(() => login.signUpNow())
-
     const project = new ProjectPage(page);
     const projectList = new ProjectsResultList(page, await project.getProjectsListContainer());
     const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));
@@ -106,18 +113,19 @@ test.describe('Integrations Tests @full-regression @integrations', () => {
 
   test('Has Whatsapp integration card connect button', async ({ page }, testInfo) => {
     test.slow()
+
+    //Allure report data
+    await allure.description(
+      "This test attempts to log into the website using a login and a password. And Check if the Whatsapp integration card has connect button",
+    );
+    await allure.owner("Alan Diaz");
+    await allure.tags("full-regression", "integrations");
+    await allure.link("https://www.notion.so/laureate-mx/Integrations-Tests-0be05db45bc64eeab3e47fd9e8b4f2d2", "Notion Test Case Related");
+
     //Arrange
-    const user = userSelector.getUserByDescription('qasuperuser');
-    const login = new LoginPage(page);
     const projectBuilder = new ProjectBuilderPage(page);
 
     //Act
-    await login.navigateToLoginPage();
-
-    await login.inputUserName(user.email)
-      .then(() => login.inputPassword(user.password))
-      .then(() => login.signUpNow())
-
     const project = new ProjectPage(page);
     const projectList = new ProjectsResultList(page, await project.getProjectsListContainer());
     const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));
@@ -135,18 +143,19 @@ test.describe('Integrations Tests @full-regression @integrations', () => {
 
   test('Has Whatsapp integration card learn more button', async ({ page }, testInfo) => {
     test.slow()
+
+    //Allure report data
+    await allure.description(
+      "This test attempts to log into the website using a login and a password. And Check if the Whatsapp integration card has learn more button",
+    );
+    await allure.owner("Alan Diaz");
+    await allure.tags("full-regression", "integrations");
+    await allure.link("https://www.notion.so/laureate-mx/Integrations-Tests-0be05db45bc64eeab3e47fd9e8b4f2d2", "Notion Test Case Related");
+
     //Arrange
-    const user = userSelector.getUserByDescription('qasuperuser');
-    const login = new LoginPage(page);
     const projectBuilder = new ProjectBuilderPage(page);
 
     //Act
-    await login.navigateToLoginPage();
-
-    await login.inputUserName(user.email)
-      .then(() => login.inputPassword(user.password))
-      .then(() => login.signUpNow())
-
     const project = new ProjectPage(page);
     const projectList = new ProjectsResultList(page, await project.getProjectsListContainer());
     const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));
@@ -164,18 +173,19 @@ test.describe('Integrations Tests @full-regression @integrations', () => {
 
   test('Has Genesys Cloud integration card Logo', async ({ page }, testInfo) => {
     test.slow()
+
+    //Allure report data
+    await allure.description(
+      "This test attempts to log into the website using a login and a password. And Check if the Genesys Cloud integration card has Logo",
+    );
+    await allure.owner("Alan Diaz");
+    await allure.tags("full-regression", "integrations");
+    await allure.link("https://www.notion.so/laureate-mx/Integrations-Tests-0be05db45bc64eeab3e47fd9e8b4f2d2", "Notion Test Case Related");
+
     //Arrange
-    const user = userSelector.getUserByDescription('qasuperuser');
-    const login = new LoginPage(page);
     const projectBuilder = new ProjectBuilderPage(page);
 
     //Act
-    await login.navigateToLoginPage();
-
-    await login.inputUserName(user.email)
-      .then(() => login.inputPassword(user.password))
-      .then(() => login.signUpNow())
-
     const project = new ProjectPage(page);
     const projectList = new ProjectsResultList(page, await project.getProjectsListContainer());
     const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));
@@ -193,18 +203,19 @@ test.describe('Integrations Tests @full-regression @integrations', () => {
 
   test('Has Genesys Cloud integration card title and phone number', async ({ page }, testInfo) => {
     test.slow()
+
+    //Allure report data
+    await allure.description(
+      "This test attempts to log into the website using a login and a password. And Check if the Genesys Cloud integration card has title and phone number",
+    );
+    await allure.owner("Alan Diaz");
+    await allure.tags("full-regression", "integrations");
+    await allure.link("https://www.notion.so/laureate-mx/Integrations-Tests-0be05db45bc64eeab3e47fd9e8b4f2d2", "Notion Test Case Related");
+
     //Arrange
-    const user = userSelector.getUserByDescription('qasuperuser');
-    const login = new LoginPage(page);
     const projectBuilder = new ProjectBuilderPage(page);
 
     //Act
-    await login.navigateToLoginPage();
-
-    await login.inputUserName(user.email)
-      .then(() => login.inputPassword(user.password))
-      .then(() => login.signUpNow())
-
     const project = new ProjectPage(page);
     const projectList = new ProjectsResultList(page, await project.getProjectsListContainer());
     const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));
@@ -222,18 +233,19 @@ test.describe('Integrations Tests @full-regression @integrations', () => {
 
   test('Has Genesys Cloud integration card description', async ({ page }, testInfo) => {
     test.slow()
+
+    //Allure report data
+    await allure.description(
+      "This test attempts to log into the website using a login and a password. And Check if the Genesys Cloud integration card has description",
+    );
+    await allure.owner("Alan Diaz");
+    await allure.tags("full-regression", "integrations");
+    await allure.link("https://www.notion.so/laureate-mx/Integrations-Tests-0be05db45bc64eeab3e47fd9e8b4f2d2", "Notion Test Case Related");
+
     //Arrange
-    const user = userSelector.getUserByDescription('qasuperuser');
-    const login = new LoginPage(page);
     const projectBuilder = new ProjectBuilderPage(page);
 
     //Act
-    await login.navigateToLoginPage();
-
-    await login.inputUserName(user.email)
-      .then(() => login.inputPassword(user.password))
-      .then(() => login.signUpNow())
-
     const project = new ProjectPage(page);
     const projectList = new ProjectsResultList(page, await project.getProjectsListContainer());
     const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));
@@ -251,18 +263,19 @@ test.describe('Integrations Tests @full-regression @integrations', () => {
 
   test('Has Genesys Cloud integration card connect button', async ({ page }, testInfo) => {
     test.slow()
+
+    //Allure report data
+    await allure.description(
+      "This test attempts to log into the website using a login and a password. And Check if the Genesys Cloud integration card has connect button",
+    );
+    await allure.owner("Alan Diaz");
+    await allure.tags("full-regression", "integrations");
+    await allure.link("https://www.notion.so/laureate-mx/Integrations-Tests-0be05db45bc64eeab3e47fd9e8b4f2d2", "Notion Test Case Related");
+
     //Arrange
-    const user = userSelector.getUserByDescription('qasuperuser');
-    const login = new LoginPage(page);
     const projectBuilder = new ProjectBuilderPage(page);
 
     //Act
-    await login.navigateToLoginPage();
-
-    await login.inputUserName(user.email)
-      .then(() => login.inputPassword(user.password))
-      .then(() => login.signUpNow())
-
     const project = new ProjectPage(page);
     const projectList = new ProjectsResultList(page, await project.getProjectsListContainer());
     const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));
@@ -280,18 +293,19 @@ test.describe('Integrations Tests @full-regression @integrations', () => {
 
   test('Has Genesys Cloud integration card learn more button', async ({ page }, testInfo) => {
     test.slow()
+
+    //Allure report data
+    await allure.description(
+      "This test attempts to log into the website using a login and a password. And Check if the Genesys Cloud integration card has learn more button",
+    );
+    await allure.owner("Alan Diaz");
+    await allure.tags("full-regression", "integrations");
+    await allure.link("https://www.notion.so/laureate-mx/Integrations-Tests-0be05db45bc64eeab3e47fd9e8b4f2d2", "Notion Test Case Related");
+
     //Arrange
-    const user = userSelector.getUserByDescription('qasuperuser');
-    const login = new LoginPage(page);
     const projectBuilder = new ProjectBuilderPage(page);
 
     //Act
-    await login.navigateToLoginPage();
-
-    await login.inputUserName(user.email)
-      .then(() => login.inputPassword(user.password))
-      .then(() => login.signUpNow())
-
     const project = new ProjectPage(page);
     const projectList = new ProjectsResultList(page, await project.getProjectsListContainer());
     const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));
@@ -309,9 +323,16 @@ test.describe('Integrations Tests @full-regression @integrations', () => {
 
   test('Create an API and Delete it', async ({ page }, testInfo) => {
     test.slow()
+
+    //Allure report data
+    await allure.description(
+      "This test attempts to log into the website using a login and a password. And Create an API and Delete it'",
+    );
+    await allure.owner("Alan Diaz");
+    await allure.tags("full-regression", "integrations");
+    await allure.link("https://www.notion.so/laureate-mx/Integrations-Tests-0be05db45bc64eeab3e47fd9e8b4f2d2", "Notion Test Case Related");
+
     //Arrange
-    const user = userSelector.getUserByDescription('qasuperuser');
-    const login = new LoginPage(page);
     const projectBuilder = new ProjectBuilderPage(page);
     const apiConnection = new ApiConnectionPage(page);
     const project = new ProjectPage(page);
@@ -320,13 +341,13 @@ test.describe('Integrations Tests @full-regression @integrations', () => {
     const endpointValue = 'https://postman-echo.com/get';
     const requestValue = "GET"
 
+    //Allure parameter data
+    await allure.parameter("Name expected", nameValue);
+    await allure.parameter("Description Expected", descriptionValue);
+    await allure.parameter("Description Expected", descriptionValue);
+    await allure.parameter("Request Type Expected", requestValue);
+
     //Act
-    await login.navigateToLoginPage();
-
-    await login.inputUserName(user.email)
-      .then(() => login.inputPassword(user.password))
-      .then(() => login.signUpNow())
-
     const projectList = new ProjectsResultList(page, await project.getProjectsListContainer());
     const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));
 
@@ -385,8 +406,6 @@ test.describe('Integrations Tests @full-regression @integrations', () => {
 
   test.skip('Create a Data Base and Delete it', async ({ page }, testInfo) => {
     //Arrange
-    const user = userSelector.getUserByDescription('qasuperuser');
-    const login = new LoginPage(page);
     const projectBuilder = new ProjectBuilderPage(page);
     const apiConnection = new ApiConnectionPage(page);
     const project = new ProjectPage(page);
@@ -398,12 +417,6 @@ test.describe('Integrations Tests @full-regression @integrations', () => {
     const password = 'chatbuilder2024';
 
     //Act
-    await login.navigateToLoginPage();
-
-    await login.inputUserName(user.email)
-      .then(() => login.inputPassword(user.password))
-      .then(() => login.signUpNow())
-
     const projectList = new ProjectsResultList(page, await project.getProjectsListContainer());
     const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));
 

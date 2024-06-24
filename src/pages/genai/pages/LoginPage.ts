@@ -46,6 +46,17 @@ export class LoginPage extends basePage {
   }
 
   /**
+   * Navigates to the login page and returns the URL used
+   * @returns {Promise<string>}
+   */
+  async navigateToLoginPageAndGetUrl(): Promise<string> {
+    const urlBuilder = new URLBuilder(env.APP_ENV, env.APP_PROJECT);
+    const url = urlBuilder.buildURL('' + 'workspaces');
+    this.logger.info('You are navigating in: ' + url);
+    return url;
+  }
+
+  /**
    * Inputs the username into the username field
    * @param {string} username - The username to input
    * @returns {Promise<void>}

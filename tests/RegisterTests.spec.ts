@@ -8,6 +8,9 @@ import { testRandomDataProvider } from '../src/utils/testRandomDataProvider';
 const userSelector = new testUsersSelector();
 const testRandomData = new testRandomDataProvider();
 
+//This line delete the cookies to run tests
+test.use({ storageState: { cookies: [], origins: [] } });
+
 test.describe('Register Tests @full-regression @register', () => {
   test.skip('Successful registration', async ({ page }, testInfo) => {
     //Arrange

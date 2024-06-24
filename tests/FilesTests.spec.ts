@@ -10,26 +10,37 @@ import { ProjectsFileUpdateFilePopup } from '../src/pages/genai/components/Proje
 import { ProjectsFilesResultList } from '../src/pages/genai/components/ProjectsFilesResultList';
 import { ProjectsFilesResultItem } from '../src/pages/genai/components/ProjectsFilesResultItem';
 import * as assert from "assert";
+import { URLBuilder } from '../src/utils/URLBuilder';
+import { allure } from "allure-playwright";
 
-const userSelector = new testUsersSelector();
+test.use({ storageState: 'playwright.auth/user.json' });
+
+test.beforeEach(async ({ page }) => {
+  URLBuilder.navigateToProjectPage(page);
+  await page.waitForLoadState('networkidle');
+});
 
 test.describe('Files Tests @full-regression @files', () => {
   test('Upload a file successfully', async ({ page }, testInfo) => {
     test.slow()
+    
+    //Allure report data
+    await allure.description(
+      "This test attempts to log into the website using a login and a password. And upload a file successfully",
+    );
+    await allure.owner("Alan Diaz");
+    await allure.tags("full-regression", "files");
+    await allure.link("https://www.notion.so/laureate-mx/Files-Tests-9d66c1794ff04afaa1c2d6339ebe3956", "Notion Test Case Related");
     //Arrange
-    const user = userSelector.getUserByDescription('qasuperuser');
-    const login = new LoginPage(page);
     const projectBuilder = new ProjectBuilderPage(page);
     const file = 'PDF_Test.pdf'
     const fileMessageExpected = 'Agrega contenido y proporciona a tu chat de IA la información necesaria para dar respuestas de calidad.'
+    
+    //Allure parameter data
+    await allure.parameter("File expected", file);
+    await allure.parameter("File message Expected", fileMessageExpected);
 
     //Act
-    await login.navigateToLoginPage();
-
-    await login.inputUserName(user.email)
-      .then(() => login.inputPassword(user.password))
-      .then(() => login.signUpNow())
-
     const project = new ProjectPage(page);
     const projectList = new ProjectsResultList(page, await project.getProjectsListContainer());
     const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));
