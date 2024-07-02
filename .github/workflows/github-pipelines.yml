@@ -22,13 +22,13 @@ on:
         default: '@full-regression'
         type: choice
         options:
-          - '@configuration'
           - '@files'
           - '@flows'
           - '@full-regression'
           - '@integrations'
           - '@login'
           - '@metrics'
+          - '@personality'
           - '@preview'
           - '@register'
       shardCount:

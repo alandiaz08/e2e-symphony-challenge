@@ -19,7 +19,7 @@ export class ProjectBuilderPage extends basePage {
   private readonly filesButton: Locator;
   private readonly integrationsButton: Locator;
   private readonly flowsButton: Locator;
-  private readonly configButton: Locator;
+  private readonly personalityButton: Locator;
   private readonly chatContainer: Locator;
   private readonly metricsContainer: Locator;
   private readonly answersContainer: Locator;
@@ -41,19 +41,19 @@ export class ProjectBuilderPage extends basePage {
     this.projectDescriptionField = this.page.locator('[data-testid="edit-description-input"]');
     this.addPhoto = this.page.locator('[data-testid="upload-file-label"]');
     //this.publishButton = this.page.locator('[class="css-1axyrzt"] > button:nth-child(1)');
-    this.previewButton = this.page.locator('[data-testid="preview-btn"]');
+    this.previewButton = this.page.locator('[data-testid="tab-preview"]');
     this.shareButton = this.page.locator('[data-testid="share-dialog-button"]');
     this.actionButton = this.page.locator('[data-testid="dropdown-button"]');
     this.deleteButton = this.page.locator('ul > li');
-    this.metricsButton = this.page.locator('[data-testid="performance"]');
-    this.answersButton = this.page.locator('[data-testid="responses"]');
-    this.filesButton = this.page.locator('[data-testid="data-source"]');
-    this.integrationsButton = this.page.locator('[data-testid="integrations"]');
-    this.flowsButton = this.page.locator('[data-testid="flows"]');
-    this.configButton = this.page.locator('[data-testid="overview"]');
+    this.metricsButton = this.page.locator('[data-testid="tab-performance"]');
+    this.answersButton = this.page.locator('[data-testid="tab-responses"]');
+    this.filesButton = this.page.locator('[data-testid="tab-data-source"]');
+    this.integrationsButton = this.page.locator('[data-testid="tab-integrations"]');
+    this.flowsButton = this.page.locator('[data-testid="tab-flows"]');
+    this.personalityButton = this.page.locator('[data-testid="tab-personality"]');
     this.chatContainer = this.page.locator('[data-testid="chat-wrapper"]');
     this.metricsContainer = this.page.locator('[id="simple-tabpanel-1"]');
-    this.answersContainer = this.page.locator('[id="simple-tabpanel-2"]');
+    this.answersContainer = this.page.locator('[data-testid="tab-content"]');
     this.filesContainer = this.page.locator('[id="simple-tabpanel-3"]');
     this.integrationsContainer = this.page.locator('[id="simple-tabpanel-4"]');
     this.flowsContainer = this.page.locator('[id="simple-tabpanel-5"]');
@@ -245,12 +245,12 @@ export class ProjectBuilderPage extends basePage {
   }
 
   /**
-   * Clicks on the config button.
+   * Clicks on the personality button.
    */
-  async clickConfigButton(): Promise<void> {
-    this.logger.info('Clicking on the config button');
-    await this.configButton.waitFor({ state: 'attached' });
-    await this.configButton.click();
+  async clickPersonalityButton(): Promise<void> {
+    this.logger.info('Clicking on the personality button');
+    await this.personalityButton.waitFor({ state: 'attached' });
+    await this.personalityButton.click();
   }
 
   /**

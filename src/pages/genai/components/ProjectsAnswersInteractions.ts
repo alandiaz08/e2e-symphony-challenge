@@ -2,9 +2,9 @@ import { BaseComponent } from "../../base/baseComponent";
 import { Locator, Page } from "@playwright/test";
 
 /**
- * Class for ProjectsAiChat
+ * Class for ProjectsAnswersInteractions
  */
-export class ProjectsAiChat extends BaseComponent {
+export class ProjectsAnswersInteractions extends BaseComponent {
   private container;
   private readonly iaMessage: Locator;
   private readonly myMessage: Locator;
@@ -14,8 +14,8 @@ export class ProjectsAiChat extends BaseComponent {
   constructor(page: Page, container: Locator) {
     super(page);
     this.container = container;
-    this.iaMessage = this.container.locator('[data-testid="chat-message-sent"]').nth(0);
-    this.myMessage = this.container.locator('[data-testid="chat-message-received"]').nth(0);
+    this.myMessage= this.container.locator('[data-testid="chat-message-sent"] > div > div + div');
+    this.iaMessage = this.container.locator('[data-testid="chat-message-received"] > div > div + div');
     this.interactionDate = this.container.locator('[id="chat-scroll"] > div').nth(0);
   }
 
