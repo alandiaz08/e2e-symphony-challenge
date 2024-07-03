@@ -1,6 +1,4 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../src/pages/genai/pages/LoginPage';
-import { testUsersSelector } from '../src/utils/testUsersSelector';
 import { ProjectPage } from '../src/pages/genai/pages/ProjectsPage';
 import { ProjectsResultList } from '../src/pages/genai/components/ProjectsResultList';
 import { ProjectsResultItem } from '../src/pages/genai/components/ProjectsResultItem';

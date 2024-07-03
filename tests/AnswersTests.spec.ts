@@ -24,19 +24,13 @@ test.describe.only('Answers Tests @full-regression @answers', () => {
     
     //Allure report data
     await allure.description(
-      "This test attempts to log into the website using a login and a password. And upload a file successfully",
+      "This test attempts to log into the website using a login and a password. And checks if the conversation ID is displayed.",
     );
     await allure.owner("Alan Diaz");
-    await allure.tags("full-regression", "files");
-    await allure.link("https://www.notion.so/laureate-mx/Files-Tests-9d66c1794ff04afaa1c2d6339ebe3956", "Notion Test Case Related");
+    await allure.tags("full-regression", "answers");
+    await allure.link("https://www.notion.so/laureate-mx/Answers-Tests-c58e0a2740d34367b6fd3304dea2d87c", "Notion Test Case Related");
     //Arrange
     const projectBuilder = new ProjectBuilderPage(page);
-    const file = 'PDF_Test.pdf'
-    const fileMessageExpected = 'Agrega contenido y proporciona a tu chat de IA la información necesaria para dar respuestas de calidad.'
-    
-    //Allure parameter data
-    await allure.parameter("File expected", file);
-    await allure.parameter("File message Expected", fileMessageExpected);
 
     //Act
     const project = new ProjectPage(page);
@@ -62,19 +56,13 @@ test.describe.only('Answers Tests @full-regression @answers', () => {
     
     //Allure report data
     await allure.description(
-      "This test attempts to log into the website using a login and a password. And upload a file successfully",
+      "This test attempts to log into the website using a login and a password. And checks if the conversation interaction number is displayed.",
     );
     await allure.owner("Alan Diaz");
-    await allure.tags("full-regression", "files");
-    await allure.link("https://www.notion.so/laureate-mx/Files-Tests-9d66c1794ff04afaa1c2d6339ebe3956", "Notion Test Case Related");
+    await allure.tags("full-regression", "answers");
+    await allure.link("https://www.notion.so/laureate-mx/Answers-Tests-c58e0a2740d34367b6fd3304dea2d87c", "Notion Test Case Related");
     //Arrange
     const projectBuilder = new ProjectBuilderPage(page);
-    const file = 'PDF_Test.pdf'
-    const fileMessageExpected = 'Agrega contenido y proporciona a tu chat de IA la información necesaria para dar respuestas de calidad.'
-    
-    //Allure parameter data
-    await allure.parameter("File expected", file);
-    await allure.parameter("File message Expected", fileMessageExpected);
 
     //Act
     const project = new ProjectPage(page);
@@ -99,19 +87,13 @@ test.describe.only('Answers Tests @full-regression @answers', () => {
     
     //Allure report data
     await allure.description(
-      "This test attempts to log into the website using a login and a password. And upload a file successfully",
+      "This test attempts to log into the website using a login and a password. And checks if the IA message is displayed.",
     );
     await allure.owner("Alan Diaz");
-    await allure.tags("full-regression", "files");
-    await allure.link("https://www.notion.so/laureate-mx/Files-Tests-9d66c1794ff04afaa1c2d6339ebe3956", "Notion Test Case Related");
+    await allure.tags("full-regression", "answers");
+    await allure.link("https://www.notion.so/laureate-mx/Answers-Tests-c58e0a2740d34367b6fd3304dea2d87c", "Notion Test Case Related");
     //Arrange
     const projectBuilder = new ProjectBuilderPage(page);
-    const file = 'PDF_Test.pdf'
-    const fileMessageExpected = 'Agrega contenido y proporciona a tu chat de IA la información necesaria para dar respuestas de calidad.'
-    
-    //Allure parameter data
-    await allure.parameter("File expected", file);
-    await allure.parameter("File message Expected", fileMessageExpected);
 
     //Act
     const project = new ProjectPage(page);
@@ -141,19 +123,17 @@ test.describe.only('Answers Tests @full-regression @answers', () => {
     
     //Allure report data
     await allure.description(
-      "This test attempts to log into the website using a login and a password. And upload a file successfully",
+      "This test attempts to log into the website using a login and a password. And checks if my IA message is correct.",
     );
     await allure.owner("Alan Diaz");
-    await allure.tags("full-regression", "files");
-    await allure.link("https://www.notion.so/laureate-mx/Files-Tests-9d66c1794ff04afaa1c2d6339ebe3956", "Notion Test Case Related");
+    await allure.tags("full-regression", "answers");
+    await allure.link("https://www.notion.so/laureate-mx/Answers-Tests-c58e0a2740d34367b6fd3304dea2d87c", "Notion Test Case Related");
     //Arrange
     const projectBuilder = new ProjectBuilderPage(page);
     const myMessage = 'Hola, quiero que tomes el rol de QA automation, como personalidad';
-    const fileMessageExpected = 'Agrega contenido y proporciona a tu chat de IA la información necesaria para dar respuestas de calidad.'
     
     //Allure parameter data
     await allure.parameter("My Message expected", myMessage);
-    await allure.parameter("File message Expected", fileMessageExpected);
 
     //Act
     const project = new ProjectPage(page);
