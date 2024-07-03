@@ -18,7 +18,7 @@ test.beforeEach(async ({ page }) => {
   await page.waitForLoadState('networkidle');
 });
 
-test.describe.only('Answers Tests @full-regression @answers', () => {
+test.describe('Answers Tests @full-regression @answers', () => {
   test('Has conversation ID', async ({ page }, testInfo) => {
     test.slow()
     
