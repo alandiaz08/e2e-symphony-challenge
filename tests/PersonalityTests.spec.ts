@@ -20,7 +20,7 @@ test.beforeEach(async ({ page }) => {
   await page.waitForLoadState('networkidle');
 });
 
-test.describe('Configuration Tests @full-regression @configuration', () => {
+test.describe('Personality Tests @full-regression @personality', () => {
   test('Add and check the purpose configuration', async ({ page }, testInfo) => {
     test.slow()
 
@@ -50,7 +50,7 @@ test.describe('Configuration Tests @full-regression @configuration', () => {
     const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));
 
     await projectItem.clickProjectPicture();
-    await projectBuilder.clickConfigButton();
+    await projectBuilder.clickPersonalityButton();
 
 
     const configuration = new ProjectsConfig(page, await projectBuilder.getConfigsContainer());
@@ -98,7 +98,7 @@ test.describe('Configuration Tests @full-regression @configuration', () => {
     const projectItem = new ProjectsResultItem(page, await projectList.getProjectsItemsByIndex(1));
 
     await projectItem.clickProjectPicture();
-    await projectBuilder.clickConfigButton();
+    await projectBuilder.clickPersonalityButton();
 
     const configuration = new ProjectsConfig(page, await projectBuilder.getConfigsContainer());
     const configurationList = new ProjectsConfigResultList(page, await configuration.getConfigListContainer());

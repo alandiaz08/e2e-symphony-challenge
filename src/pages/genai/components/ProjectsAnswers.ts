@@ -16,7 +16,7 @@ export class ProjectsAnswers extends BaseComponent {
   constructor(page: Page, container: Locator) {
     super(page);
     this.container = container;
-    this.conversationListContainer = this.container.locator('[class="scrollbar-container ps"]');
+    this.conversationListContainer = this.container.locator('[class="flex flex-col gap-4"]');
     this.conversationContainer = this.container.locator('[id="chat-scroll"]');
     this.contextContainer = this.container.locator('[data-testid="context-card"]');
     this.timeFilter = this.container.locator('[data-testid="dropdown-button"]');

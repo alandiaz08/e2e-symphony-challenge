@@ -2,9 +2,9 @@ import { BaseComponent } from "../../base/baseComponent";
 import { Locator, Page } from "@playwright/test";
 
 /**
- * Class for ProjectsAiChat
+ * Class for ProjectsAnswersConversationResultLItem
  */
-export class ProjectsAiChat extends BaseComponent {
+export class ProjectsAnswersConversationResultLItem extends BaseComponent {
   private container;
   private readonly conversationId: Locator;
   private readonly interactionNumber: Locator;
