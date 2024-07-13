@@ -21,7 +21,7 @@ export class URLBuilder {
   }
 
   /**
-   * Navigates to the Gen AI
+   * Navigates to the symphony
    * @returns {Promise<void>}
    */
   static async navigateToProjectPage(page: Page): Promise<void> {

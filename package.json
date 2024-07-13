@@ -1,13 +1,13 @@
 {
-  "name": "e2e-genai-tests",
+  "name": "e2e-symphony-challenge",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "playwright": "npx playwright",
     "test": "playwright test",
-    "===== GenAi =====": "",
-    "test:genai-all": "playwright test --config=playwright.config.ts",
+    "===== Symphony =====": "",
+    "test:symphony-all": "playwright test --config=playwright.config.ts",
     "===== Clean =====": "",
     "clean-results": "del /s /q allure-results\\*",
     "===== Allure =====": "",
